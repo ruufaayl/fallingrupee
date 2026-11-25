@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+/* ------------------------------------------------------------------------------------------------
+   Design tokens. The site is a dark editorial documentary: midnight ink, graphite panels,
+   warm off-white type, muted gold as the single UI accent. Chart series colours were validated
+   with the dataviz palette checker against the #0e0f11 surface (lightness band, chroma, CVD ΔE ≥ 8,
+   normal-vision ΔE ≥ 15, contrast ≥ 3:1).
+   ------------------------------------------------------------------------------------------------ */
+@theme {
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-serif: "Fraunces Variable", Georgia, serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-ink: #0b0c0e;
+  --color-surface: #0e0f11;
+  --color-graphite: #15171a;
+  --color-graphite-2: #1d2024;
+  --color-line: #2a2e34;
+  --color-line-strong: #3a3f46;
+  --color-paper: #f1ece2;
+  --color-paper-dim: #c9c3b7;
+  --color-muted: #9a958b;
+  --color-faint: #6c6860;
+  --color-gold: #c9a24a;
+  --color-gold-soft: #8a7036;
+
+  /* series (validated) */
+  --color-s-food: #e5484d;
+  --color-s-exr: #d28e05;
+  --color-s-energy: #338ced;
+  --color-s-world: #00a888;
+  /* semantic */
+  --color-rise: #e5484d;
+  --color-fall: #00a888;
+  --color-pending: #d28e05;
+  --color-verified: #00a888;
+}
+
+:root {
+  color-scheme: dark;
+  --header-h: 56px;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-gold) 45%, transparent);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* film grain over the opening — static SVG noise, no animation cost */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.hairline {
+  border-color: var(--color-line);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.prose-doc p {
+  color: var(--color-paper-dim);
+  line-height: 1.75;
+  font-size: 1.0625rem;
+}
+.prose-doc p + p {
+  margin-top: 1rem;
+}
+.prose-doc strong {
+  color: var(--color-paper);
+  font-weight: 600;
+}
+
+/* KaTeX in the dark theme */
+.katex {
+  font-size: 1.08em;
+  color: var(--color-paper);
+}
+.katex-display {
+  margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+/* tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.data-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 500;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--color-line-strong);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: top;
+}
+.data-table tr:hover td {
+  background: color-mix(in oklab, var(--color-graphite-2) 70%, transparent);
+}
+.data-table td.n {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* presentation mode: each chapter fills the viewport, chrome hidden */
+html[data-present="true"] .site-chrome {
+  opacity: 0;
+  pointer-events: none;
+}
+html[data-present="true"] section[data-chapter] {
+  min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  .site-chrome,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #111;
+  }
+}
+
+/* grid items may shrink below their content width so wide tables scroll inside their own container */
+.grid > * {
+  min-width: 0;
+}
+
+/* opening: fade the data lines behind the headline column so text stays legible */
+.hero-lines {
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.35) 45%, #000 75%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.35) 45%, #000 75%);
+}
