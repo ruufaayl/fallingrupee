@@ -227,7 +227,7 @@ export function ForestChart({ rows }: { rows: RobustRow[] }) {
           return `<div style="max-width:260px;white-space:normal">${lab}</div><b>${sn}</b>: <span style="font-family:monospace">${d.value[0].toFixed(3)} (p = ${Number(pv).toFixed(3)})</span>`;
         },
       },
-      xAxis: { type: "value", min: (v: { min: number }) => Math.min(0, Math.floor(v.min * 10) / 10), name: "Long-run elasticity of food CPI", nameLocation: "middle", nameGap: 28, ...axisCommon() },
+      xAxis: { type: "value", min: (v: { min: number }) => Math.min(0, Math.floor(v.min * 10) / 10), name: "Long-run elasticity of food CPI", nameLocation: "middle", nameGap: 28, ...axisCommon({ axisLine: { onZero: false, lineStyle: { color: C.axis } } }) },
       yAxis: { type: "value", min: -1, max: ok.length, inverse: true, interval: 1, ...axisCommon({ splitLine: { show: false } }), axisLabel: { ...baseText, formatter: (v: number) => cats[v] ?? "" } },
       series: [mk("LEXR_POS", C.rise, -0.15), mk("LEXR_NEG", C.fall, 0.15)],
     };
