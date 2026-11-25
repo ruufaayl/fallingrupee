@@ -1,0 +1,432 @@
+{
+  "_meta": {
+    "generated_utc": "2026-11-25T16:00:00+00:00",
+    "engine": {
+      "software": "Python 3.13.18",
+      "packages": {
+        "statsmodels": "0.15.0",
+        "pandas": "3.0.5",
+        "numpy": "2.5.3"
+      }
+    },
+    "status": "computed_python_pending_eviews",
+    "estimation_sample": "2015-01–2025-12",
+    "script": "scripts/03_estimate.py"
+  },
+  "variables": [
+    {
+      "variable": "FOODCPI",
+      "label": "Food CPI (2015-16=100)",
+      "n": 132,
+      "mean": 168.358949,
+      "median": 136.889088,
+      "sd": 71.581354,
+      "min": 97.169052,
+      "min_date": "2015-02",
+      "max": 298.58,
+      "max_date": "2025-10",
+      "skewness": 0.690644,
+      "kurtosis": 1.80231,
+      "jarque_bera": 18.383305,
+      "jb_p": 0.000102,
+      "total_change_pct": 193.937588,
+      "cagr_pct": 10.380816,
+      "index_2015m01_100_end": 293.937588
+    },
+    {
+      "variable": "EXR",
+      "label": "PKR per USD",
+      "n": 132,
+      "mean": 177.609605,
+      "median": 159.251485,
+      "sd": 70.012944,
+      "min": 100.832455,
+      "min_date": "2015-01",
+      "max": 297.40919,
+      "max_date": "2023-09",
+      "skewness": 0.516183,
+      "kurtosis": 1.705239,
+      "jarque_bera": 15.082018,
+      "jb_p": 0.000531,
+      "total_change_pct": 178.210998,
+      "cagr_pct": 9.826221,
+      "index_2015m01_100_end": 278.210998
+    },
+    {
+      "variable": "GFOOD",
+      "label": "FAO Food Price Index (2014-16=100)",
+      "n": 132,
+      "mean": 110.511364,
+      "median": 100.4,
+      "sd": 18.334132,
+      "min": 84.9,
+      "min_date": "2016-01",
+      "max": 160.2,
+      "max_date": "2022-03",
+      "skewness": 0.59669,
+      "kurtosis": 2.367985,
+      "jarque_bera": 10.029797,
+      "jb_p": 0.006638,
+      "total_change_pct": 23.267327,
+      "cagr_pct": 1.934677,
+      "index_2015m01_100_end": 123.267327
+    },
+    {
+      "variable": "TRANSCPI",
+      "label": "Transport CPI (2015-16=100)",
+      "n": 132,
+      "mean": 181.18828,
+      "median": 141.458094,
+      "sd": 82.76556,
+      "min": 102.083538,
+      "min_date": "2016-03",
+      "max": 328.106937,
+      "max_date": "2023-09",
+      "skewness": 0.705604,
+      "kurtosis": 1.766501,
+      "jarque_bera": 19.321643,
+      "jb_p": 6.4e-05,
+      "total_change_pct": 191.079128,
+      "cagr_pct": 10.28205,
+      "index_2015m01_100_end": 291.079128
+    },
+    {
+      "variable": "CPI",
+      "label": "Headline CPI (2015-16=100)",
+      "n": 132,
+      "mean": 160.584887,
+      "median": 134.204306,
+      "sd": 62.932738,
+      "min": 95.733192,
+      "min_date": "2015-02",
+      "max": 281.78,
+      "max_date": "2025-11",
+      "skewness": 0.744337,
+      "kurtosis": 1.966017,
+      "jarque_bera": 18.068974,
+      "jb_p": 0.000119,
+      "total_change_pct": 190.325264,
+      "cagr_pct": 10.255856,
+      "index_2015m01_100_end": 290.325264
+    },
+    {
+      "variable": "FOOD_INF_YOY",
+      "label": "Food inflation, YoY %",
+      "n": 132,
+      "mean": 10.49865,
+      "median": 5.059173,
+      "sd": 12.458928,
+      "min": -5.118485,
+      "min_date": "2025-03",
+      "max": 48.652697,
+      "max_date": "2023-05",
+      "skewness": 1.389237,
+      "kurtosis": 4.223365,
+      "jarque_bera": 50.690962,
+      "jb_p": 0.0
+    },
+    {
+      "variable": "FOOD_INF_MOM",
+      "label": "Food inflation, MoM %",
+      "n": 132,
+      "mean": 0.839147,
+      "median": 0.637559,
+      "sd": 2.148671,
+      "min": -7.827935,
+      "min_date": "2024-05",
+      "max": 5.764567,
+      "max_date": "2022-09",
+      "skewness": -0.174779,
+      "kurtosis": 4.103841,
+      "jarque_bera": 7.373606,
+      "jb_p": 0.025052
+    },
+    {
+      "variable": "EXR_DEP_YOY",
+      "label": "PKR depreciation vs USD, YoY %",
+      "n": 132,
+      "mean": 10.562984,
+      "median": 3.793059,
+      "sd": 13.893468,
+      "min": -6.814328,
+      "min_date": "2021-04",
+      "max": 55.764293,
+      "max_date": "2023-03",
+      "skewness": 1.172378,
+      "kurtosis": 3.693595,
+      "jarque_bera": 32.88424,
+      "jb_p": 0.0
+    },
+    {
+      "variable": "GFOOD_YOY",
+      "label": "FAO FFPI, YoY %",
+      "n": 132,
+      "mean": 1.824069,
+      "median": 0.798691,
+      "sd": 13.72341,
+      "min": -22.139918,
+      "min_date": "2015-04",
+      "max": 40.789474,
+      "max_date": "2021-05",
+      "skewness": 0.575409,
+      "kurtosis": 3.342777,
+      "jarque_bera": 7.930321,
+      "jb_p": 0.018965
+    },
+    {
+      "variable": "TRANS_YOY",
+      "label": "Transport CPI, YoY %",
+      "n": 132,
+      "mean": 10.434427,
+      "median": 6.217718,
+      "sd": 17.577562,
+      "min": -14.383228,
+      "min_date": "2015-09",
+      "max": 64.732282,
+      "max_date": "2022-07",
+      "skewness": 1.361329,
+      "kurtosis": 4.639278,
+      "jarque_bera": 55.550542,
+      "jb_p": 0.0
+    }
+  ],
+  "annual_means": {
+    "2015": {
+      "FOODCPI": 100.676,
+      "EXR": 102.765,
+      "GFOOD": 93.067,
+      "TRANSCPI": 107.528,
+      "CPI": 98.228
+    },
+    "2016": {
+      "FOODCPI": 103.148,
+      "EXR": 104.729,
+      "GFOOD": 91.958,
+      "TRANSCPI": 103.726,
+      "CPI": 101.926
+    },
+    "2017": {
+      "FOODCPI": 106.539,
+      "EXR": 105.354,
+      "GFOOD": 97.925,
+      "TRANSCPI": 106.818,
+      "CPI": 106.09
+    },
+    "2018": {
+      "FOODCPI": 108.871,
+      "EXR": 121.587,
+      "GFOOD": 95.742,
+      "TRANSCPI": 120.042,
+      "CPI": 111.478
+    },
+    "2019": {
+      "FOODCPI": 120.491,
+      "EXR": 150.269,
+      "GFOOD": 94.925,
+      "TRANSCPI": 136.399,
+      "CPI": 123.27
+    },
+    "2020": {
+      "FOODCPI": 139.111,
+      "EXR": 161.815,
+      "GFOOD": 98.058,
+      "TRANSCPI": 136.521,
+      "CPI": 135.277
+    },
+    "2021": {
+      "FOODCPI": 153.725,
+      "EXR": 162.946,
+      "GFOOD": 125.742,
+      "TRANSCPI": 150.697,
+      "CPI": 148.123
+    },
+    "2022": {
+      "FOODCPI": 192.151,
+      "EXR": 204.352,
+      "GFOOD": 144.517,
+      "TRANSCPI": 217.445,
+      "CPI": 177.561
+    },
+    "2023": {
+      "FOODCPI": 265.041,
+      "EXR": 279.858,
+      "GFOOD": 124.525,
+      "TRANSCPI": 291.322,
+      "CPI": 232.193
+    },
+    "2024": {
+      "FOODCPI": 280.39,
+      "EXR": 278.562,
+      "GFOOD": 121.975,
+      "TRANSCPI": 308.824,
+      "CPI": 261.525
+    },
+    "2025": {
+      "FOODCPI": 281.804,
+      "EXR": 281.469,
+      "GFOOD": 127.192,
+      "TRANSCPI": 313.748,
+      "CPI": 270.763
+    }
+  },
+  "annual_growth_pct": {
+    "2016": {
+      "FOODCPI": 2.455,
+      "EXR": 1.911,
+      "GFOOD": -1.191,
+      "TRANSCPI": -3.536,
+      "CPI": 3.765
+    },
+    "2017": {
+      "FOODCPI": 3.287,
+      "EXR": 0.597,
+      "GFOOD": 6.488,
+      "TRANSCPI": 2.981,
+      "CPI": 4.085
+    },
+    "2018": {
+      "FOODCPI": 2.189,
+      "EXR": 15.408,
+      "GFOOD": -2.23,
+      "TRANSCPI": 12.38,
+      "CPI": 5.078
+    },
+    "2019": {
+      "FOODCPI": 10.673,
+      "EXR": 23.59,
+      "GFOOD": -0.853,
+      "TRANSCPI": 13.626,
+      "CPI": 10.578
+    },
+    "2020": {
+      "FOODCPI": 15.453,
+      "EXR": 7.683,
+      "GFOOD": 3.301,
+      "TRANSCPI": 0.089,
+      "CPI": 9.74
+    },
+    "2021": {
+      "FOODCPI": 10.506,
+      "EXR": 0.699,
+      "GFOOD": 28.231,
+      "TRANSCPI": 10.384,
+      "CPI": 9.496
+    },
+    "2022": {
+      "FOODCPI": 24.997,
+      "EXR": 25.41,
+      "GFOOD": 14.931,
+      "TRANSCPI": 44.292,
+      "CPI": 19.874
+    },
+    "2023": {
+      "FOODCPI": 37.933,
+      "EXR": 36.949,
+      "GFOOD": -13.833,
+      "TRANSCPI": 33.975,
+      "CPI": 30.768
+    },
+    "2024": {
+      "FOODCPI": 5.791,
+      "EXR": -0.463,
+      "GFOOD": -2.048,
+      "TRANSCPI": 6.008,
+      "CPI": 12.633
+    },
+    "2025": {
+      "FOODCPI": 0.504,
+      "EXR": 1.043,
+      "GFOOD": 4.277,
+      "TRANSCPI": 1.595,
+      "CPI": 3.532
+    }
+  },
+  "food_inflation_outliers": {
+    "method": "robust z = (x − median)/MAD·1.4826, |z| > 2.5, monthly food inflation",
+    "items": [
+      {
+        "date": "2022-06",
+        "food_inf_mom": 5.495,
+        "robust_z": 2.53
+      },
+      {
+        "date": "2022-09",
+        "food_inf_mom": 5.765,
+        "robust_z": 2.67
+      },
+      {
+        "date": "2022-10",
+        "food_inf_mom": 5.637,
+        "robust_z": 2.61
+      },
+      {
+        "date": "2024-05",
+        "food_inf_mom": -7.828,
+        "robust_z": -4.41
+      },
+      {
+        "date": "2025-09",
+        "food_inf_mom": 5.455,
+        "robust_z": 2.51
+      }
+    ]
+  },
+  "largest_depreciation_months": [
+    {
+      "date": "2023-02",
+      "pct": 13.61
+    },
+    {
+      "date": "2022-07",
+      "pct": 6.08
+    },
+    {
+      "date": "2019-06",
+      "pct": 5.48
+    },
+    {
+      "date": "2018-10",
+      "pct": 5.31
+    },
+    {
+      "date": "2022-06",
+      "pct": 5.27
+    },
+    {
+      "date": "2022-05",
+      "pct": 4.97
+    }
+  ],
+  "largest_appreciation_months": [
+    {
+      "date": "2023-10",
+      "pct": -5.91
+    },
+    {
+      "date": "2022-10",
+      "pct": -4.34
+    },
+    {
+      "date": "2020-05",
+      "pct": -2.45
+    },
+    {
+      "date": "2021-03",
+      "pct": -2.19
+    },
+    {
+      "date": "2020-11",
+      "pct": -2.11
+    },
+    {
+      "date": "2023-07",
+      "pct": -2.02
+    }
+  ],
+  "exchange_rate_months": {
+    "depreciating": 83,
+    "appreciating": 48,
+    "cumulative_depreciation_log": 1.389907,
+    "cumulative_appreciation_log": -0.366697
+  }
+}

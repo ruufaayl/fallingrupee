@@ -1,0 +1,239 @@
+{
+  "_meta": {
+    "generated_utc": "2026-11-25T16:00:00+00:00",
+    "engine": {
+      "software": "Python 3.13.18",
+      "packages": {
+        "statsmodels": "0.15.0",
+        "pandas": "3.0.5",
+        "numpy": "2.5.3"
+      }
+    },
+    "status": "computed_python_pending_eviews",
+    "estimation_sample": "2015-01–2025-12",
+    "script": "scripts/03_estimate.py"
+  },
+  "model_id": "OLS_LEVELS",
+  "equation": "LFOODCPI = c + b1·LEXR + b2·LGFOOD + b3·LTRANSCPI + u",
+  "nobs": 132,
+  "coefficients": [
+    {
+      "term": "const",
+      "coef": -0.308499,
+      "se": 0.162872,
+      "t": -1.894116,
+      "p": 0.060466
+    },
+    {
+      "term": "LEXR",
+      "coef": 0.279373,
+      "se": 0.062965,
+      "t": 4.436982,
+      "p": 1.9e-05
+    },
+    {
+      "term": "LGFOOD",
+      "coef": 0.145469,
+      "se": 0.046328,
+      "t": 3.139983,
+      "p": 0.002098
+    },
+    {
+      "term": "LTRANSCPI",
+      "coef": 0.635353,
+      "se": 0.058355,
+      "t": 10.887702,
+      "p": 0.0
+    }
+  ],
+  "coefficients_hac": [
+    {
+      "term": "const",
+      "coef": -0.308499,
+      "se": 0.420885,
+      "t": -0.732977,
+      "p": 0.463573
+    },
+    {
+      "term": "LEXR",
+      "coef": 0.279373,
+      "se": 0.159197,
+      "t": 1.754886,
+      "p": 0.079279
+    },
+    {
+      "term": "LGFOOD",
+      "coef": 0.145469,
+      "se": 0.122047,
+      "t": 1.191909,
+      "p": 0.233297
+    },
+    {
+      "term": "LTRANSCPI",
+      "coef": 0.635353,
+      "se": 0.137877,
+      "t": 4.608106,
+      "p": 4e-06
+    }
+  ],
+  "r2": 0.982182,
+  "adj_r2": 0.981765,
+  "F": 2351.971,
+  "F_p": 0.0,
+  "se_regression": 0.054212,
+  "dw": 0.2467,
+  "aic": -390.985,
+  "bic": -379.454,
+  "spurious_regression_check": {
+    "granger_newbold_rule": "R² > DW suggests a possibly spurious levels regression",
+    "r2_exceeds_dw": true,
+    "engle_granger": {
+      "null": "No cointegration (residuals have a unit root)",
+      "stat": -3.5897,
+      "p": 0.1591,
+      "crit": {
+        "1%": -4.7837,
+        "5%": -4.1824,
+        "10%": -3.8745
+      }
+    }
+  },
+  "diagnostics": [
+    {
+      "group": "Serial correlation",
+      "test": "Breusch-Godfrey LM (2 lags)",
+      "null": "No serial correlation up to order 2",
+      "stat_name": "Obs·R²",
+      "stat": 102.3274,
+      "df": 2,
+      "p": 0.0,
+      "F": 217.2589,
+      "p_F": 0.0,
+      "reject_5pct": true
+    },
+    {
+      "group": "Serial correlation",
+      "test": "Breusch-Godfrey LM (12 lags)",
+      "null": "No serial correlation up to order 12",
+      "stat_name": "Obs·R²",
+      "stat": 106.881,
+      "df": 12,
+      "p": 0.0,
+      "F": 41.1315,
+      "p_F": 0.0,
+      "reject_5pct": true
+    },
+    {
+      "group": "Heteroskedasticity",
+      "test": "Breusch-Pagan-Godfrey",
+      "null": "Homoskedastic errors",
+      "stat_name": "Obs·R²",
+      "stat": 5.4559,
+      "df": 3,
+      "p": 0.1413,
+      "F": 1.8396,
+      "p_F": 0.1433,
+      "reject_5pct": false
+    },
+    {
+      "group": "Heteroskedasticity",
+      "test": "White (no cross terms)",
+      "null": "Homoskedastic errors",
+      "stat_name": "Obs·R²",
+      "stat": 34.1083,
+      "df": 6,
+      "p": 0.0,
+      "reject_5pct": true
+    },
+    {
+      "group": "Heteroskedasticity",
+      "test": "ARCH LM (1 lag)",
+      "null": "No ARCH effects",
+      "stat_name": "Obs·R²",
+      "stat": 73.7877,
+      "df": 1,
+      "p": 0.0,
+      "reject_5pct": true
+    },
+    {
+      "group": "Heteroskedasticity",
+      "test": "ARCH LM (12 lags)",
+      "null": "No ARCH effects",
+      "stat_name": "Obs·R²",
+      "stat": 75.6998,
+      "df": 12,
+      "p": 0.0,
+      "reject_5pct": true
+    },
+    {
+      "group": "Normality",
+      "test": "Jarque-Bera",
+      "null": "Residuals are normally distributed",
+      "stat_name": "JB",
+      "stat": 11.1367,
+      "df": 2,
+      "p": 0.0038,
+      "skewness": -0.7113,
+      "kurtosis": 3.0331,
+      "reject_5pct": true
+    },
+    {
+      "group": "Functional form",
+      "test": "Ramsey RESET (1 fitted term)",
+      "null": "Correct functional form (no omitted non-linearity)",
+      "stat_name": "F",
+      "stat": 89.4558,
+      "df": [
+        1,
+        127
+      ],
+      "p": 0.0,
+      "reject_5pct": true
+    },
+    {
+      "group": "Serial correlation",
+      "test": "Durbin-Watson",
+      "null": "No first-order autocorrelation",
+      "stat_name": "DW",
+      "stat": 0.2467,
+      "p": null,
+      "note": "Indicative only: DW is invalid with a lagged dependent variable among the regressors; rely on Breusch-Godfrey."
+    }
+  ],
+  "first_difference_ols": {
+    "equation": "ΔLFOODCPI = c + b1·ΔLEXR + b2·ΔLGFOOD + b3·ΔLTRANSCPI + u (HAC s.e.)",
+    "nobs": 131,
+    "coefficients": [
+      {
+        "term": "const",
+        "coef": 0.006789,
+        "se": 0.002133,
+        "t": 3.183511,
+        "p": 0.001455
+      },
+      {
+        "term": "LEXR",
+        "coef": -0.040743,
+        "se": 0.082452,
+        "t": -0.494135,
+        "p": 0.621211
+      },
+      {
+        "term": "LGFOOD",
+        "coef": -0.005068,
+        "se": 0.059467,
+        "t": -0.08522,
+        "p": 0.932087
+      },
+      {
+        "term": "LTRANSCPI",
+        "coef": 0.216726,
+        "se": 0.035993,
+        "t": 6.021323,
+        "p": 0.0
+      }
+    ],
+    "r2": 0.083401,
+    "dw": 1.7061
+  }
+}

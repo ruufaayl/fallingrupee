@@ -1,0 +1,56 @@
+{
+  "sample": "2015-01\u20132025-12",
+  "n_obs": 132,
+  "checks": [
+    {
+      "check": "PBS Table 1 vs IMF CPI (food) on 9 overlapping months",
+      "passed": true,
+      "detail": "max |diff| = 0.003 index points over 2024-07, 2024-08, 2024-09, 2024-10, 2024-11, 2024-12, 2025-01, 2025-06, 2025-07"
+    },
+    {
+      "check": "PBS Table 1 vs IMF CPI (general) on 9 overlapping months",
+      "passed": true,
+      "detail": "max |diff| = 0.005 index points over 2024-07, 2024-08, 2024-09, 2024-10, 2024-11, 2024-12, 2025-01, 2025-06, 2025-07"
+    },
+    {
+      "check": "PBS Table 1 vs IMF CPI (transport) on 9 overlapping months",
+      "passed": true,
+      "detail": "max |diff| = 0.005 index points over 2024-07, 2024-08, 2024-09, 2024-10, 2024-11, 2024-12, 2025-01, 2025-06, 2025-07"
+    },
+    {
+      "check": "PBS Table 1 vs IMF CPI (housing) on 9 overlapping months",
+      "passed": true,
+      "detail": "max |diff| = 0.004 index points over 2024-07, 2024-08, 2024-09, 2024-10, 2024-11, 2024-12, 2025-01, 2025-06, 2025-07"
+    },
+    {
+      "check": "World Bank GEM PKR/USD vs IMF IFS period-average (2015M01\u20132025M06)",
+      "passed": true,
+      "detail": "max relative gap 0.0150 (2018-10), corr 0.99997"
+    },
+    {
+      "check": "FAO FFPI covers the sample",
+      "passed": true,
+      "detail": "1990-01\u20132026-10"
+    },
+    {
+      "check": "Pink Sheet covers the sample",
+      "passed": true,
+      "detail": "food idx to 2025-12, Brent to 2025-12"
+    },
+    {
+      "check": "No missing observations in core variables",
+      "passed": true,
+      "detail": "N = 132; missing = {'FOODCPI': 0, 'EXR': 0, 'GFOOD': 0, 'TRANSCPI': 0}"
+    },
+    {
+      "check": "Sample length",
+      "passed": true,
+      "detail": "2015-01\u20132025-12, N = 132"
+    },
+    {
+      "check": "Partial sums reconstruct ln(EXR)",
+      "passed": true,
+      "detail": "LEXR_t = LEXR_0 + POS_t + NEG_t holds exactly"
+    }
+  ]
+}
