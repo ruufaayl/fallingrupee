@@ -1,0 +1,171 @@
+{
+  "variables": [
+    {
+      "code": "FOODCPI",
+      "log_code": "LFOODCPI",
+      "role": "Dependent variable",
+      "name": "Food CPI (National)",
+      "definition": "National Consumer Price Index, group 1 'Food & non-alcoholic beverages' (weight 34.58%)",
+      "unit": "Index, 2015-16 = 100",
+      "source": [
+        "IMF_CPI",
+        "PBS_CPI"
+      ],
+      "series_id": "IMF CPI M.PK.PCPIF_IX (2008M07–2025M07); PBS Table 1 (2025M08–2025M12)",
+      "transform": "Natural log. Monthly and year-on-year % changes for description.",
+      "rebasing": "From 2019M07 the series is PBS's 2015-16-base national CPI (identical to PBS Table 1, verified to ±0.003 index points). Earlier months are the IMF's back-linked series, which chains the previous (2007-08-base) CPI onto the new base; its FY2015-16 average is 101.6 rather than 100. The linkage is documented and tested with a 2019M07 step dummy and a post-2019M07 sub-sample."
+    },
+    {
+      "code": "EXR",
+      "log_code": "LEXR",
+      "role": "Key regressor",
+      "name": "Exchange rate, PKR per USD",
+      "definition": "Official exchange rate, Pakistani rupees per US dollar, monthly period average",
+      "unit": "PKR per USD",
+      "source": [
+        "WB_GEM",
+        "IMF_IFS"
+      ],
+      "series_id": "World Bank GEM DPANUSSPB",
+      "transform": "Natural log; a rise is a DEPRECIATION of the rupee.",
+      "rebasing": "None. Cross-checked against IMF IFS ENDA_XDC_USD_RATE (2015M01–2025M06): correlation 0.99997."
+    },
+    {
+      "code": "LEXR_POS",
+      "log_code": "LEXR_POS",
+      "role": "NARDL regressor",
+      "name": "Cumulative depreciation (EXR⁺)",
+      "definition": "Partial sum of positive monthly changes in ln(EXR) since 2015M01",
+      "unit": "Log points",
+      "source": [
+        "WB_GEM"
+      ],
+      "series_id": "Derived",
+      "transform": "Σ max(Δln EXR, 0)",
+      "rebasing": "—"
+    },
+    {
+      "code": "LEXR_NEG",
+      "log_code": "LEXR_NEG",
+      "role": "NARDL regressor",
+      "name": "Cumulative appreciation (EXR⁻)",
+      "definition": "Partial sum of negative monthly changes in ln(EXR) since 2015M01 (≤ 0)",
+      "unit": "Log points",
+      "source": [
+        "WB_GEM"
+      ],
+      "series_id": "Derived",
+      "transform": "Σ min(Δln EXR, 0)",
+      "rebasing": "—"
+    },
+    {
+      "code": "GFOOD",
+      "log_code": "LGFOOD",
+      "role": "Key regressor",
+      "name": "International food prices",
+      "definition": "FAO Food Price Index (nominal, US dollar based)",
+      "unit": "Index, 2014–2016 = 100",
+      "source": [
+        "FAO_FFPI"
+      ],
+      "series_id": "FAO FFPI, column 'Food Price Index'",
+      "transform": "Natural log",
+      "rebasing": "None"
+    },
+    {
+      "code": "TRANSCPI",
+      "log_code": "LTRANSCPI",
+      "role": "Key regressor (energy proxy)",
+      "name": "Domestic energy cost: Transport CPI",
+      "definition": "National CPI group 7 'Transport' (weight 5.91%), dominated by motor fuel; captures domestic petrol/diesel prices and freight-related fares that feed food distribution costs",
+      "unit": "Index, 2015-16 = 100",
+      "source": [
+        "IMF_CPI",
+        "PBS_CPI"
+      ],
+      "series_id": "IMF CPI M.PK.PCPIT_IX; PBS Table 1",
+      "transform": "Natural log",
+      "rebasing": "As FOODCPI"
+    },
+    {
+      "code": "HOUSCPI",
+      "log_code": "LHOUSCPI",
+      "role": "Robustness (energy)",
+      "name": "Housing, water, electricity, gas & fuels CPI",
+      "definition": "National CPI group 4 (weight 23.63%)",
+      "unit": "Index, 2015-16 = 100",
+      "source": [
+        "IMF_CPI",
+        "PBS_CPI"
+      ],
+      "series_id": "IMF CPI M.PK.PCPIH_IX; PBS Table 1",
+      "transform": "Natural log",
+      "rebasing": "As FOODCPI"
+    },
+    {
+      "code": "BRENT",
+      "log_code": "LBRENT",
+      "role": "Robustness (energy)",
+      "name": "Brent crude oil price",
+      "definition": "Crude oil, Brent, US dollars per barrel",
+      "unit": "USD/bbl",
+      "source": [
+        "WB_PINK"
+      ],
+      "series_id": "Pink Sheet 'CRUDE_BRENT'",
+      "transform": "Natural log",
+      "rebasing": "None"
+    },
+    {
+      "code": "GFOOD_WB",
+      "log_code": "LGFOOD_WB",
+      "role": "Robustness (global food)",
+      "name": "World Bank food price index",
+      "definition": "Pink Sheet food price index, nominal US dollars",
+      "unit": "Index, 2010 = 100",
+      "source": [
+        "WB_PINK"
+      ],
+      "series_id": "Pink Sheet 'Monthly Indices' — Food",
+      "transform": "Natural log",
+      "rebasing": "None"
+    },
+    {
+      "code": "CPI",
+      "log_code": "LCPI",
+      "role": "Context / extension",
+      "name": "Headline CPI (National)",
+      "definition": "National CPI, general index",
+      "unit": "Index, 2015-16 = 100",
+      "source": [
+        "IMF_CPI",
+        "PBS_CPI"
+      ],
+      "series_id": "IMF CPI M.PK.PCPI_IX; PBS Table 1",
+      "transform": "Natural log",
+      "rebasing": "As FOODCPI"
+    }
+  ],
+  "considered_but_excluded": [
+    {
+      "variable": "Policy interest rate",
+      "decision": "Excluded",
+      "reason": "SBP's statistics portal refused automated access (HTTP 403) and the IMF IFS policy-rate series is not in the mirror; monetary policy works mainly through the exchange rate and demand, whose effect on food prices is partly captured by EXR."
+    },
+    {
+      "variable": "Broad money (M2)",
+      "decision": "Excluded",
+      "reason": "IMF IFS FMB_XDC ends in 2025M04 (8 missing months); adding it would shorten the common sample."
+    },
+    {
+      "variable": "International oil price",
+      "decision": "Robustness only",
+      "reason": "Brent (USD) substitutes for the domestic energy proxy in a robustness model."
+    },
+    {
+      "variable": "Import prices / agricultural output / rainfall",
+      "decision": "Excluded",
+      "reason": "No consistent monthly official series for 2015–2025 was obtainable; event dummies for the 2022 floods are tested instead."
+    }
+  ]
+}

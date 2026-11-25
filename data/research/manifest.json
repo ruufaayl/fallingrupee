@@ -1,0 +1,63 @@
+{
+  "project": "The Price of a Falling Rupee",
+  "generated_utc": "2026-11-25T16:05:47+00:00",
+  "estimation_sample": {
+    "start": "2015M01",
+    "end": "2025M12",
+    "frequency": "monthly",
+    "nobs": 132
+  },
+  "status_legend": {
+    "verified": "Reproduced in EViews within tolerance (see research/eviews_verification.json)",
+    "computed_python_pending_eviews": "Computed reproducibly in Python (statsmodels); EViews confirmation outstanding",
+    "not_available": "Could not be computed or the data could not be obtained",
+    "not_applicable": "The test does not apply to the selected specification"
+  },
+  "models": [
+    {
+      "model_id": "OLS_LEVELS",
+      "description": "Static OLS in log levels",
+      "status": "computed_python_pending_eviews",
+      "eviews_program": "eviews/03_ols.prg"
+    },
+    {
+      "model_id": "ARDL_MAIN",
+      "description": "ARDL(2, 1, 3, 2)",
+      "status": "computed_python_pending_eviews",
+      "eviews_program": "eviews/04_ardl.prg"
+    },
+    {
+      "model_id": "NARDL_MAIN",
+      "description": "NARDL(1, 0, 1, 0, 2)",
+      "status": "computed_python_pending_eviews",
+      "eviews_program": "eviews/05_nardl.prg"
+    },
+    {
+      "model_id": "ROBUSTNESS",
+      "description": "13 NARDL + 5 ARDL alternatives",
+      "status": "computed_python_pending_eviews",
+      "eviews_program": "eviews/06_robustness.prg"
+    }
+  ],
+  "files": [
+    "ardl_results.json",
+    "bounds_test.json",
+    "correlations.json",
+    "descriptive_statistics.json",
+    "diagnostics.json",
+    "ecm_results.json",
+    "findings.json",
+    "multipliers.json",
+    "nardl_results.json",
+    "ols_results.json",
+    "robustness.json",
+    "sources.json",
+    "stationarity.json",
+    "timeseries.json",
+    "variables.json",
+    "wald_tests.json"
+  ],
+  "eviews_verification": {
+    "models": {}
+  }
+}

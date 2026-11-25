@@ -1,0 +1,124 @@
+{
+  "headline_numbers": {
+    "food_cpi_change_pct": 193.937588,
+    "exr_change_pct": 178.210998,
+    "gfood_change_pct": 23.267327,
+    "food_infl_peak": 48.652697,
+    "food_infl_peak_date": "2023-05",
+    "food_cagr_pct": 10.380816,
+    "exr_peak": 297.40919,
+    "exr_peak_date": "2023-09",
+    "nobs": 132
+  },
+  "answers": [
+    {
+      "q": "Is there evidence of a long-run relationship?",
+      "model": "ARDL_MAIN / NARDL_MAIN",
+      "answer": "Yes in the linear ARDL: F = 7.54 exceeds the 5% I(1) bound (4.35) and t = -3.83 lies below its I(1) bound (-3.78). In the NARDL, the F-test rejects (F = 5.36) but the t-test does not (t = -2.39 vs -3.99), so the asymmetric long-run relationship is supported by one of the two PSS tests only.",
+      "strength": "strong (ARDL) / partial (NARDL)"
+    },
+    {
+      "q": "Does depreciation affect food CPI?",
+      "model": "NARDL_MAIN",
+      "answer": "Yes. A permanent 1% depreciation is associated with a 0.53% higher food CPI in the long run (p = 0.043; 95% CI 0.02 to 1.04). The linear ARDL gives 0.64 (p = 0.004). The sign is positive in 12/12 robustness specifications and significant at 5% in 9.",
+      "strength": "robust in sign; significant in most specifications"
+    },
+    {
+      "q": "Does appreciation have an equivalent opposite effect?",
+      "model": "NARDL_MAIN",
+      "answer": "Not demonstrably. The long-run appreciation coefficient (1.18, p = 0.29) is statistically indistinguishable from zero and is significant in 0 of 12 specifications. Long-run symmetry is NOT rejected (Wald χ²(1) = 0.47, p = 0.49); it is rejected in 1 of 12 specifications (Sample 2019M07–2025M12 (2015-16-base national CPI only)). Short-run (impact) symmetry IS rejected (F = 5.35, p = 0.023; rejected in 8/12 specifications): in the month the rupee appreciates, food prices do not fall — the point estimate implies they edge up (0.46% per 1% appreciation) before reversing.",
+      "strength": "short-run asymmetry significant; long-run asymmetry not established"
+    },
+    {
+      "q": "Which variables have statistically significant effects?",
+      "model": "ARDL_MAIN / NARDL_MAIN",
+      "answer": "Long run (ARDL): exchange rate 0.64 (p = 0.004) and FAO food prices 0.61 (p = 0.002); transport CPI 0.21 is not significant (p = 0.36). In the NARDL, transport CPI becomes significant (0.50, p = 0.031) and FAO prices are marginal (p = 0.066).",
+      "strength": "see coefficient tables"
+    },
+    {
+      "q": "Is the estimated model stable?",
+      "model": "ARDL_MAIN / NARDL_MAIN",
+      "answer": "The linear ARDL passes both CUSUM and CUSUM-of-squares. The NARDL passes CUSUM (within bounds) but its CUSUM-of-squares crosses the 5% band (max deviation 0.378 vs 0.174, around 2017-02), signalling a change in residual variance over the sample (consistent with calm 2015–18 and volatile 2022–25 food prices).",
+      "strength": "ARDL stable; NARDL variance instability"
+    },
+    {
+      "q": "Are the results robust?",
+      "model": "ROBUSTNESS",
+      "answer": "The positive depreciation pass-through survives alternative lag rules, energy and global-food proxies, an outlier dummy and sub-samples in sign (12/12) and mostly in significance (9/12). It weakens when a 2019M07 step dummy and other event dummies are added, because the rebasing step absorbs part of the level shift.",
+      "strength": "moderately robust"
+    }
+  ],
+  "speed_of_adjustment": {
+    "ARDL_MAIN": -0.119741,
+    "ARDL_half_life": 5.435,
+    "NARDL_MAIN": -0.103704,
+    "NARDL_half_life": 6.331
+  },
+  "multiplier_snapshots": [
+    {
+      "h": 0,
+      "depreciation": 0.05231,
+      "appreciation_response": 0.46364,
+      "asym": 0.51596,
+      "asym_lo95": 0.08849,
+      "asym_hi95": 0.96094
+    },
+    {
+      "h": 1,
+      "depreciation": 0.09946,
+      "appreciation_response": 0.30098,
+      "asym": 0.40044,
+      "asym_lo95": -0.04691,
+      "asym_hi95": 0.84374
+    },
+    {
+      "h": 3,
+      "depreciation": 0.18025,
+      "appreciation_response": 0.02225,
+      "asym": 0.2025,
+      "asym_lo95": -0.37475,
+      "asym_hi95": 0.70377
+    },
+    {
+      "h": 6,
+      "depreciation": 0.27391,
+      "appreciation_response": -0.30087,
+      "asym": -0.02696,
+      "asym_lo95": -0.86132,
+      "asym_hi95": 0.59972
+    },
+    {
+      "h": 12,
+      "depreciation": 0.39266,
+      "appreciation_response": -0.71058,
+      "asym": -0.31792,
+      "asym_lo95": -1.7796,
+      "asym_hi95": 0.55623
+    },
+    {
+      "h": 24,
+      "depreciation": 0.49041,
+      "appreciation_response": -1.04781,
+      "asym": -0.5574,
+      "asym_lo95": -3.2133,
+      "asym_hi95": 0.54044
+    },
+    {
+      "h": 36,
+      "depreciation": 0.51848,
+      "appreciation_response": -1.14466,
+      "asym": -0.62618,
+      "asym_lo95": -4.26946,
+      "asym_hi95": 0.53827
+    }
+  ],
+  "robustness_counts": {
+    "n_specs": 12,
+    "pos_positive": 12,
+    "pos_significant": 9,
+    "neg_significant": 0,
+    "lr_symmetry_rejected": 1,
+    "impact_symmetry_rejected": 8
+  },
+  "status": "computed_python_pending_eviews"
+}

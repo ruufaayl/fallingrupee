@@ -1,0 +1,184 @@
+{
+  "sources": [
+    {
+      "id": "PBS_CPI",
+      "institution": "Pakistan Bureau of Statistics (PBS)",
+      "title": "Monthly Review on Price Indices, Table 1: Consumer Price Index (National) by Group (base 2015-16)",
+      "url": "https://www.pbs.gov.pk/price-statistics/",
+      "used_for": "Food, headline, transport and housing CPI, 2025M08–2025M12; overlap validation 2024M07–2025M07",
+      "files": [
+        "pbs_cpi_reviews/Monthly-Review-July-2025.pdf",
+        "pbs_cpi_reviews/Revised-Monthly-Review-August-2025.docx",
+        "pbs_cpi_reviews/1.-Monthly-Review-September-2025-Revised.docx",
+        "pbs_cpi_reviews/Monthly-Review-October-2025.docx",
+        "pbs_cpi_reviews/Monthly-Review-November-2025.docx",
+        "pbs_cpi_reviews/Monthly-Review-December-2025.docx",
+        "pbs_cpi_reviews/Monthly-Review-January-2026-1.pdf"
+      ],
+      "downloads": [
+        {
+          "file": "pbs_cpi_reviews/Monthly-Review-July-2025.pdf",
+          "downloaded_utc": "2026-11-25T15:51:46+00:00",
+          "sha256": "6009bb8fdba873b37155da253756dc7910777ce0ec87d2715849e38487552a25"
+        },
+        {
+          "file": "pbs_cpi_reviews/Revised-Monthly-Review-August-2025.docx",
+          "downloaded_utc": "2026-11-25T15:51:48+00:00",
+          "sha256": "f24dbfd95485e2b060c6e5fbef3e66b5860712fec40b22c2b2e65027a7c50434"
+        },
+        {
+          "file": "pbs_cpi_reviews/1.-Monthly-Review-September-2025-Revised.docx",
+          "downloaded_utc": "2026-11-25T15:51:50+00:00",
+          "sha256": "fe53498a4ea0515bda4dbc71ba1da11c2a8d8bec1242c60b8537d72362210f52"
+        },
+        {
+          "file": "pbs_cpi_reviews/Monthly-Review-October-2025.docx",
+          "downloaded_utc": "2026-11-25T15:51:53+00:00",
+          "sha256": "b5230dc2460bfa57059c86d51da23ac986b096a3ac0489ba2f62380aa65d3a7d"
+        },
+        {
+          "file": "pbs_cpi_reviews/Monthly-Review-November-2025.docx",
+          "downloaded_utc": "2026-11-25T15:51:55+00:00",
+          "sha256": "c8b664a34721a6a57b21b242b2a14e4c95e9981ba36aa7ec2f5376c5cf97260c"
+        },
+        {
+          "file": "pbs_cpi_reviews/Monthly-Review-December-2025.docx",
+          "downloaded_utc": "2026-11-25T15:51:57+00:00",
+          "sha256": "e88b8a129de5a149ff59caaa4a9d404015954f639a20615ce13db06dba903b5d"
+        },
+        {
+          "file": "pbs_cpi_reviews/Monthly-Review-January-2026-1.pdf",
+          "downloaded_utc": "2026-11-25T15:52:00+00:00",
+          "sha256": "8b9dab8d024a4f16ef12eb25c12b4cbc0b745f3a3cce883946113c031d20cad9"
+        }
+      ]
+    },
+    {
+      "id": "IMF_CPI",
+      "institution": "International Monetary Fund — Consumer Price Index dataset (accessed via DBnomics mirror)",
+      "title": "Pakistan, monthly CPI by COICOP group: PCPIF_IX (food & non-alcoholic beverages), PCPI_IX, PCPIT_IX, PCPIH_IX",
+      "url": "https://db.nomics.world/IMF/CPI",
+      "used_for": "Food, headline, transport and housing CPI, 2008M07–2025M07",
+      "files": [
+        "imf_cpi_PK_PCPIF_IX.json",
+        "imf_cpi_PK_PCPI_IX.json",
+        "imf_cpi_PK_PCPIT_IX.json",
+        "imf_cpi_PK_PCPIH_IX.json"
+      ],
+      "downloads": [
+        {
+          "file": "imf_cpi_PK_PCPIF_IX.json",
+          "downloaded_utc": "2026-11-25T15:51:37+00:00",
+          "sha256": "0b3b374bebf89fba5bccc15aaa9cf327e1ab719bd4fcfa1810c95e2ebd044e72"
+        },
+        {
+          "file": "imf_cpi_PK_PCPI_IX.json",
+          "downloaded_utc": "2026-11-25T15:51:38+00:00",
+          "sha256": "a6e35aacf00cbd7cd03ff73aea1a793525c279d42a34fb8fcc78c222e6cb000a"
+        },
+        {
+          "file": "imf_cpi_PK_PCPIT_IX.json",
+          "downloaded_utc": "2026-11-25T15:51:38+00:00",
+          "sha256": "18dddebd593c3d9925cd68a2cdc19ed9067071c6d011d4f68e73f8e0c244aa4d"
+        },
+        {
+          "file": "imf_cpi_PK_PCPIH_IX.json",
+          "downloaded_utc": "2026-11-25T15:51:39+00:00",
+          "sha256": "a1f57188e16e521a736b20a9dcdfe51487c903fa17d0c073aedb1b2d0e219cee"
+        }
+      ]
+    },
+    {
+      "id": "IMF_IFS",
+      "institution": "International Monetary Fund — International Financial Statistics (via DBnomics)",
+      "title": "Pakistan: ENDA_XDC_USD_RATE (period average), ENDE_XDC_USD_RATE (end of period), FMB_XDC (broad money)",
+      "url": "https://db.nomics.world/IMF/IFS",
+      "used_for": "Cross-check of the exchange rate; end-of-period rate; broad money (coverage ends 2025M04, not used)",
+      "files": [
+        "imf_ifs_PK_ENDA_XDC_USD_RATE.json",
+        "imf_ifs_PK_ENDE_XDC_USD_RATE.json",
+        "imf_ifs_PK_FMB_XDC.json"
+      ],
+      "downloads": [
+        {
+          "file": "imf_ifs_PK_ENDA_XDC_USD_RATE.json",
+          "downloaded_utc": "2026-11-25T15:51:40+00:00",
+          "sha256": "bcdcd44081055bce7b5f348ee2554b6779113dec7fb3828a104fe14ff1f0de75"
+        },
+        {
+          "file": "imf_ifs_PK_ENDE_XDC_USD_RATE.json",
+          "downloaded_utc": "2026-11-25T15:51:41+00:00",
+          "sha256": "3d6a5a4f40666256ce32726f99ac0b8bfa7b54ac826e7374de576416695bd287"
+        },
+        {
+          "file": "imf_ifs_PK_FMB_XDC.json",
+          "downloaded_utc": "2026-11-25T15:51:42+00:00",
+          "sha256": "af7ca156e5a3af5b5cfceb6e78da7ab52bde7eabd2745ce2caa4e97ac752ec3b"
+        }
+      ]
+    },
+    {
+      "id": "WB_GEM",
+      "institution": "World Bank — Global Economic Monitor (data source 15)",
+      "title": "Pakistan: DPANUSSPB, official exchange rate, LCU per USD, period average",
+      "url": "https://api.worldbank.org/v2/sources/15/country/PAK/series/DPANUSSPB",
+      "used_for": "EXR, 2015M01–2025M12",
+      "files": [
+        "wb_gem_PAK_DPANUSSPB.json",
+        "wb_gem_PAK_CPTOTNSXN.json"
+      ],
+      "downloads": [
+        {
+          "file": "wb_gem_PAK_DPANUSSPB.json",
+          "downloaded_utc": "2026-11-25T15:51:42+00:00",
+          "sha256": "96c305577c9d6ef263f5f4aa7792aa72a74320474d8c4ca30fdf017bd5a92a5e"
+        },
+        {
+          "file": "wb_gem_PAK_CPTOTNSXN.json",
+          "downloaded_utc": "2026-11-25T15:51:42+00:00",
+          "sha256": "d4eaf20f85b88d44d538cc5385ff36272864e24646fa2d93b7b070c8b11cce19"
+        }
+      ]
+    },
+    {
+      "id": "FAO_FFPI",
+      "institution": "Food and Agriculture Organization of the United Nations (FAO)",
+      "title": "FAO Food Price Index, nominal, 2014–2016 = 100",
+      "url": "https://www.fao.org/worldfoodsituation/foodpricesindex/en/",
+      "used_for": "GFOOD",
+      "files": [
+        "fao_food_price_indices_data.csv",
+        "fao_ffpi_nominal_real.xlsx"
+      ],
+      "downloads": [
+        {
+          "file": "fao_food_price_indices_data.csv",
+          "downloaded_utc": "2026-11-25T15:51:42+00:00",
+          "sha256": "6f26341212b1354608984f92654d52a934dfd125e7236640d7fb4545e3db00dc"
+        },
+        {
+          "file": "fao_ffpi_nominal_real.xlsx",
+          "downloaded_utc": "2026-11-25T15:51:43+00:00",
+          "sha256": "706557a9f16d6d5fcb24b7330f137bb3137c7c1ea860a865405b3c4b03256454"
+        }
+      ]
+    },
+    {
+      "id": "WB_PINK",
+      "institution": "World Bank — Commodity Markets (Pink Sheet)",
+      "title": "CMO Historical Data Monthly: food price index (2010 = 100) and Brent crude (USD/bbl)",
+      "url": "https://www.worldbank.org/en/research/commodity-markets",
+      "used_for": "GFOOD_WB and BRENT (robustness)",
+      "files": [
+        "wb_cmo_historical_data_monthly.xlsx"
+      ],
+      "downloads": [
+        {
+          "file": "wb_cmo_historical_data_monthly.xlsx",
+          "downloaded_utc": "2026-11-25T15:51:43+00:00",
+          "sha256": "83a320affafc83512d4af4c7198af6ce086326c8b6923d9f64dd905172f86290"
+        }
+      ]
+    }
+  ]
+}

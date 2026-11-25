@@ -1,0 +1,2713 @@
+{
+  "_meta": {
+    "generated_utc": "2026-11-25T16:00:00+00:00",
+    "engine": {
+      "software": "Python 3.13.18",
+      "packages": {
+        "statsmodels": "0.15.0",
+        "pandas": "3.0.5",
+        "numpy": "2.5.3"
+      }
+    },
+    "status": "computed_python_pending_eviews",
+    "estimation_sample": "2015-01–2025-12",
+    "script": "scripts/03_estimate.py"
+  },
+  "rule": "Integration order by majority of ADF(AIC), ADF(SIC) and PP at 5%; KPSS reported as a confirmatory test with the reverse null. ARDL bounds testing requires that no variable is I(2): every variable is checked in second differences.",
+  "summary": {
+    "LFOODCPI": {
+      "label": "ln Food CPI",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        false,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LEXR": {
+      "label": "ln PKR/USD",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        true,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        false,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LGFOOD": {
+      "label": "ln FAO FFPI",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        false,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LTRANSCPI": {
+      "label": "ln Transport CPI",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        false,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LEXR_POS": {
+      "label": "ln EXR⁺ (depreciation sum)",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        true,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LEXR_NEG": {
+      "label": "ln EXR⁻ (appreciation sum)",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        false,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LHOUSCPI": {
+      "label": "ln Housing & utilities CPI",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        false,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LBRENT": {
+      "label": "ln Brent (USD)",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        false,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    },
+    "LGFOOD_WB": {
+      "label": "ln WB food index",
+      "integration_order": "I(1)",
+      "not_I2": true,
+      "level_reject_unitroot_votes_c": [
+        false,
+        false,
+        false
+      ],
+      "level_reject_unitroot_votes_ct": [
+        false,
+        false,
+        false
+      ],
+      "diff_reject_unitroot_votes": [
+        true,
+        true,
+        true
+      ],
+      "diff_kpss_stationary": [
+        true
+      ]
+    }
+  },
+  "tests": [
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": 0.3274,
+      "p": 0.9786,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": 0.7305,
+      "p": 0.9904,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8839,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": 0.2836,
+      "p": 0.9774,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.8795,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -1.72,
+      "p": 0.742,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -1.8301,
+      "p": 0.6901,
+      "crit": {
+        "1%": -4.0296,
+        "5%": -3.4446,
+        "10%": -3.147
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.0089,
+      "p": 0.5966,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.3617,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": -9.386,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -9.386,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -9.9602,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 2,
+      "stat": 0.3667,
+      "p": 0.0915,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 11,
+      "stat": -4.7909,
+      "p": 0.0001,
+      "crit": {
+        "1%": -3.487,
+        "5%": -2.8864,
+        "10%": -2.58
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 4,
+      "stat": -9.2029,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4838,
+        "5%": -2.885,
+        "10%": -2.5793
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -32.3973,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LFOODCPI",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 53,
+      "stat": 0.3292,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 9,
+      "stat": -0.9333,
+      "p": 0.7768,
+      "crit": {
+        "1%": -3.4851,
+        "5%": -2.8855,
+        "10%": -2.5796
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -0.3351,
+      "p": 0.9204,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -0.3812,
+      "p": 0.9104,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.9042,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 11,
+      "stat": -3.7567,
+      "p": 0.0189,
+      "crit": {
+        "1%": -4.0363,
+        "5%": -3.4477,
+        "10%": -3.1489
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -2.0578,
+      "p": 0.5696,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.2719,
+      "p": 0.4485,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.1637,
+      "p": 0.0353,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 8,
+      "stat": -2.1874,
+      "p": 0.2109,
+      "crit": {
+        "1%": -3.4851,
+        "5%": -2.8855,
+        "10%": -2.5796
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -7.8164,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -8.2928,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 4,
+      "stat": 0.1435,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 7,
+      "stat": -7.3483,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4851,
+        "5%": -2.8855,
+        "10%": -2.5796
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 4,
+      "stat": -9.9009,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4838,
+        "5%": -2.885,
+        "10%": -2.5793
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -27.4014,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 32,
+      "stat": 0.1268,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -1.1582,
+      "p": 0.6913,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -1.1582,
+      "p": 0.6913,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -1.1453,
+      "p": 0.6996,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.4499,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -2.0779,
+      "p": 0.5584,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -2.0779,
+      "p": 0.5584,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.3081,
+      "p": 0.4285,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.1542,
+      "p": 0.0432,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": -7.702,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -7.702,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -7.8088,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 4,
+      "stat": 0.1178,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 8,
+      "stat": -6.3571,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4856,
+        "5%": -2.8857,
+        "10%": -2.5797
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 3,
+      "stat": -9.743,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4833,
+        "5%": -2.8848,
+        "10%": -2.5792
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -27.2657,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 15,
+      "stat": 0.0951,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 2,
+      "stat": 0.28,
+      "p": 0.9764,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": 0.0125,
+      "p": 0.9596,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": 0.1879,
+      "p": 0.9718,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.8326,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 8,
+      "stat": -2.4205,
+      "p": 0.3688,
+      "crit": {
+        "1%": -4.0343,
+        "5%": -3.4468,
+        "10%": -3.1483
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -2.108,
+      "p": 0.5416,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.2446,
+      "p": 0.4637,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.3282,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -8.0433,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -8.3387,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -8.3172,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 1,
+      "stat": 0.2943,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 6,
+      "stat": -8.6562,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4847,
+        "5%": -2.8853,
+        "10%": -2.5795
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 5,
+      "stat": -9.8181,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4842,
+        "5%": -2.8851,
+        "10%": -2.5794
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -28.1731,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LTRANSCPI",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 129,
+      "stat": 0.5,
+      "p": 0.0417,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": 0.0647,
+      "p": 0.9636,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": 0.0647,
+      "p": 0.9636,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": 0.018,
+      "p": 0.9591,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.9268,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 11,
+      "stat": -3.7132,
+      "p": 0.0215,
+      "crit": {
+        "1%": -4.0363,
+        "5%": -3.4477,
+        "10%": -3.1489
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -2.0766,
+      "p": 0.5592,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.2212,
+      "p": 0.4769,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.2663,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": -6.7528,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -6.7528,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -7.4441,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 4,
+      "stat": 0.2762,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 10,
+      "stat": -4.298,
+      "p": 0.0004,
+      "crit": {
+        "1%": -3.4865,
+        "5%": -2.8862,
+        "10%": -2.5799
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 4,
+      "stat": -9.6723,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4838,
+        "5%": -2.885,
+        "10%": -2.5793
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -23.1314,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_POS",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 21,
+      "stat": 0.0827,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": 0.9486,
+      "p": 0.9937,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8839,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": 0.9486,
+      "p": 0.9937,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8839,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": 0.6668,
+      "p": 0.9914,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.8796,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": -2.0194,
+      "p": 0.5908,
+      "crit": {
+        "1%": -4.0296,
+        "5%": -3.4446,
+        "10%": -3.147
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -2.0194,
+      "p": 0.5908,
+      "crit": {
+        "1%": -4.0296,
+        "5%": -3.4446,
+        "10%": -3.147
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.0757,
+      "p": 0.5591,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.3982,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": -10.6613,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -10.6613,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -10.9407,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 1,
+      "stat": 0.426,
+      "p": 0.066,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 10,
+      "stat": -6.5159,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4865,
+        "5%": -2.8862,
+        "10%": -2.5799
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 3,
+      "stat": -9.8944,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4833,
+        "5%": -2.8848,
+        "10%": -2.5792
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -40.2951,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LEXR_NEG",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 26,
+      "stat": 0.103,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 2,
+      "stat": 0.7342,
+      "p": 0.9905,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": 0.3569,
+      "p": 0.9798,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8839,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": 0.7638,
+      "p": 0.9935,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.9085,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": -2.4619,
+      "p": 0.3472,
+      "crit": {
+        "1%": -4.0296,
+        "5%": -3.4446,
+        "10%": -3.147
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -2.4619,
+      "p": 0.3472,
+      "crit": {
+        "1%": -4.0296,
+        "5%": -3.4446,
+        "10%": -3.147
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.3403,
+      "p": 0.411,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.3848,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -9.957,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -13.2413,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -13.5477,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 8,
+      "stat": 0.2242,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 7,
+      "stat": -7.9598,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4851,
+        "5%": -2.8855,
+        "10%": -2.5796
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 5,
+      "stat": -8.8117,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4842,
+        "5%": -2.8851,
+        "10%": -2.5794
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -45.4843,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LHOUSCPI",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 34,
+      "stat": 0.138,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 2,
+      "stat": -2.1753,
+      "p": 0.2153,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 2,
+      "stat": -2.1753,
+      "p": 0.2153,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.2213,
+      "p": 0.1989,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.8868,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 2,
+      "stat": -2.5363,
+      "p": 0.31,
+      "crit": {
+        "1%": -4.0307,
+        "5%": -3.4451,
+        "10%": -3.1473
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 2,
+      "stat": -2.5363,
+      "p": 0.31,
+      "crit": {
+        "1%": -4.0307,
+        "5%": -3.4451,
+        "10%": -3.1473
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -2.4924,
+      "p": 0.3317,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.088,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -8.758,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LBRENT",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -8.758,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LBRENT",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -7.9588,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LBRENT",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 0,
+      "stat": 0.0668,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LBRENT",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 6,
+      "stat": -7.7088,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4847,
+        "5%": -2.8853,
+        "10%": -2.5795
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LBRENT",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 5,
+      "stat": -8.675,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4842,
+        "5%": -2.8851,
+        "10%": -2.5794
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LBRENT",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -23.3887,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LBRENT",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 32,
+      "stat": 0.1909,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -1.3518,
+      "p": 0.6052,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -1.3518,
+      "p": 0.6052,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -1.2198,
+      "p": 0.6688,
+      "crit": {
+        "1%": -3.4813,
+        "5%": -2.8838,
+        "10%": -2.5787
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 1.2905,
+      "p": 0.01,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "AIC",
+      "lags": 1,
+      "stat": -1.8322,
+      "p": 0.689,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "ADF",
+      "deterministic": "ct",
+      "lag_rule": "BIC",
+      "lags": 1,
+      "stat": -1.8322,
+      "p": 0.689,
+      "crit": {
+        "1%": -4.0302,
+        "5%": -3.4448,
+        "10%": -3.1472
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "PP",
+      "deterministic": "ct",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -1.8705,
+      "p": 0.6718,
+      "crit": {
+        "1%": -4.0298,
+        "5%": -3.4446,
+        "10%": -3.1471
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "level",
+      "test": "KPSS",
+      "deterministic": "ct",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 6,
+      "stat": 0.1968,
+      "p": 0.0172,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.119,
+        "5%": 0.146,
+        "1%": 0.216
+      },
+      "null": "Stationary",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 0,
+      "stat": -7.9367,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "first_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -7.9367,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "first_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -7.7485,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4817,
+        "5%": -2.884,
+        "10%": -2.5788
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "first_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 4,
+      "stat": 0.1275,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "AIC",
+      "lags": 9,
+      "stat": -7.1612,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4861,
+        "5%": -2.8859,
+        "10%": -2.5798
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "second_difference",
+      "test": "ADF",
+      "deterministic": "c",
+      "lag_rule": "BIC",
+      "lags": 0,
+      "stat": -16.6096,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "second_difference",
+      "test": "PP",
+      "deterministic": "c",
+      "lag_rule": "Newey-West bandwidth",
+      "lags": 13,
+      "stat": -28.9749,
+      "p": 0.0,
+      "crit": {
+        "1%": -3.4821,
+        "5%": -2.8842,
+        "10%": -2.5789
+      },
+      "null": "Unit root (non-stationary)",
+      "reject_5pct": true
+    },
+    {
+      "variable": "LGFOOD_WB",
+      "form": "second_difference",
+      "test": "KPSS",
+      "deterministic": "c",
+      "lag_rule": "Hobijn et al. auto",
+      "lags": 11,
+      "stat": 0.0703,
+      "p": 0.1,
+      "p_note": "KPSS p-values are interpolated and bounded to [0.01, 0.10]",
+      "crit": {
+        "10%": 0.347,
+        "5%": 0.463,
+        "1%": 0.739
+      },
+      "null": "Stationary",
+      "reject_5pct": false
+    }
+  ],
+  "bounds_admissible": true
+}

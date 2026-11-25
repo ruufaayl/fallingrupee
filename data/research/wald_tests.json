@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "generated_utc": "2026-11-25T16:00:00+00:00",
+    "engine": {
+      "software": "Python 3.13.18",
+      "packages": {
+        "statsmodels": "0.15.0",
+        "pandas": "3.0.5",
+        "numpy": "2.5.3"
+      }
+    },
+    "status": "computed_python_pending_eviews",
+    "estimation_sample": "2015-01–2025-12",
+    "script": "scripts/03_estimate.py"
+  },
+  "tests": [
+    {
+      "id": "LR_SYM",
+      "model_id": "NARDL_MAIN",
+      "null": "Long-run symmetry: L⁺ = L⁻ (−θ⁺/ρ = −θ⁻/ρ)",
+      "statistic": "Wald χ²",
+      "value": 0.4658,
+      "df": 1,
+      "p": 0.4949,
+      "alt_statistic": "F (θ⁺ = θ⁻)",
+      "alt_value": 0.7693,
+      "alt_df": [
+        1,
+        108
+      ],
+      "alt_p": 0.3824,
+      "decision": "Do not reject symmetry"
+    },
+    {
+      "id": "SR_IMPACT",
+      "model_id": "NARDL_MAIN",
+      "null": "Impact symmetry: β⁺₀ = β⁻₀ (same within-month effect)",
+      "statistic": "F",
+      "value": 5.3505,
+      "df": [
+        1,
+        108
+      ],
+      "p": 0.0226,
+      "decision": "Reject symmetry"
+    },
+    {
+      "id": "SR_ADDITIVE",
+      "model_id": "NARDL_MAIN",
+      "null": "Additive short-run symmetry: Σπ⁺ = Σπ⁻",
+      "status": "not_applicable",
+      "reason": "The selected order gives LEXR_POS no lagged Δ-terms (q⁺ = 0), so its short-run effect is the impact coefficient alone; short-run symmetry is tested on impact."
+    }
+  ]
+}

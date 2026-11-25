@@ -1,0 +1,124 @@
+{
+  "ARDL_MAIN": {
+    "description": "Restricted ECM (EViews: ECM Regression) — short-run terms and CointEq(-1)",
+    "coefficients": [
+      {
+        "term": "C",
+        "coef": 0.0,
+        "se": 0.005983,
+        "t": 0.0,
+        "p": 1.0
+      },
+      {
+        "term": "D(LFOODCPI(-1))",
+        "coef": 0.134174,
+        "se": 0.084851,
+        "t": 1.5813,
+        "p": 0.116734
+      },
+      {
+        "term": "D(LEXR)",
+        "coef": -0.102379,
+        "se": 0.084449,
+        "t": -1.21232,
+        "p": 0.228035
+      },
+      {
+        "term": "D(LGFOOD)",
+        "coef": -0.036993,
+        "se": 0.073307,
+        "t": -0.504631,
+        "p": 0.614846
+      },
+      {
+        "term": "D(LGFOOD(-1))",
+        "coef": 0.059782,
+        "se": 0.075475,
+        "t": 0.792074,
+        "p": 0.430054
+      },
+      {
+        "term": "D(LGFOOD(-2))",
+        "coef": -0.172319,
+        "se": 0.069928,
+        "t": -2.464245,
+        "p": 0.015307
+      },
+      {
+        "term": "D(LTRANSCPI)",
+        "coef": 0.163791,
+        "se": 0.061689,
+        "t": 2.655091,
+        "p": 0.009128
+      },
+      {
+        "term": "D(LTRANSCPI(-1))",
+        "coef": -0.15122,
+        "se": 0.058073,
+        "t": -2.603944,
+        "p": 0.010512
+      },
+      {
+        "term": "CointEq(-1)",
+        "coef": -0.119741,
+        "se": 0.021503,
+        "t": -5.568633,
+        "p": 0.0
+      }
+    ],
+    "r2": 0.513346,
+    "adj_r2": 0.427731,
+    "dw": 2.0364,
+    "speed_of_adjustment": -0.119741,
+    "speed_p": 0.0,
+    "half_life_months": 5.435,
+    "status": "computed_python_pending_eviews"
+  },
+  "NARDL_MAIN": {
+    "description": "Restricted ECM (EViews: ECM Regression) — short-run terms and CointEq(-1)",
+    "coefficients": [
+      {
+        "term": "C",
+        "coef": 0.001182,
+        "se": 0.006147,
+        "t": 0.19231,
+        "p": 0.847848
+      },
+      {
+        "term": "D(LEXR_NEG)",
+        "coef": -0.461037,
+        "se": 0.205157,
+        "t": -2.247246,
+        "p": 0.026584
+      },
+      {
+        "term": "D(LTRANSCPI)",
+        "coef": 0.201349,
+        "se": 0.05531,
+        "t": 3.640395,
+        "p": 0.000414
+      },
+      {
+        "term": "D(LTRANSCPI(-1))",
+        "coef": -0.179793,
+        "se": 0.056955,
+        "t": -3.15673,
+        "p": 0.00205
+      },
+      {
+        "term": "CointEq(-1)",
+        "coef": -0.103704,
+        "se": 0.019226,
+        "t": -5.393926,
+        "p": 0.0
+      }
+    ],
+    "r2": 0.49818,
+    "adj_r2": 0.430972,
+    "dw": 1.8463,
+    "speed_of_adjustment": -0.103704,
+    "speed_p": 0.0,
+    "half_life_months": 6.331,
+    "status": "computed_python_pending_eviews"
+  }
+}
