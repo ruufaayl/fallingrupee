@@ -9,7 +9,7 @@ import { CHAPTERS } from "@/lib/chapters";
 /**
  * Fixed top bar: scroll progress, current chapter, chapter menu and presentation mode.
  * Keyboard: → / PageDown / j = next chapter, ← / PageUp / k = previous, p = presentation mode,
- * 1–9 and 0 jump to chapters 1–10, Esc closes the menu or leaves presentation mode.
+ * 1–9 jump to sections 1–9, Esc closes the menu or leaves presentation mode.
  */
 export function ChapterNav() {
   const [progress, setProgress] = useState(0);
@@ -203,7 +203,7 @@ export function ChapterNav() {
 
       {present ? (
         <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-full border border-line bg-ink/90 px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
-          {String(c.n).padStart(2, "0")} / 10 · ← → to move · Esc to exit
+          {String(c.n).padStart(2, "0")} / {String(CHAPTERS.length).padStart(2, "0")} · ← → to move · Esc to exit
         </div>
       ) : null}
 
@@ -223,8 +223,8 @@ export function ChapterNav() {
               <dd>Next chapter</dd>
               <dt className="text-paper">← / k</dt>
               <dd>Previous chapter</dd>
-              <dt className="text-paper">1 … 0</dt>
-              <dd>Jump to chapter 1 … 10</dd>
+              <dt className="text-paper">1 … 9</dt>
+              <dd>Jump to a section</dd>
               <dt className="text-paper">p</dt>
               <dd>Presentation mode</dd>
               <dt className="text-paper">Esc</dt>
