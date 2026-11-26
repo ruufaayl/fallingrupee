@@ -31,8 +31,8 @@ export function BoundsLine({ b, kind }: { b: BoundsTest; kind: "F" | "t" }) {
         <circle cx={pos(stat)} cy={9} r={1.6} fill="#f1ece2" />
       </svg>
       <div className="relative h-5 font-mono text-[0.65rem] text-faint">
-        <span className="absolute -translate-x-1/2" style={{ left: `${pos(lo)}%` }}>I(0) {fmt(lo, 2)}</span>
-        <span className="absolute -translate-x-1/2" style={{ left: `${pos(hi)}%` }}>I(1) {fmt(hi, 2)}</span>
+        <span className={`absolute pr-1 ${kind === "F" ? "-translate-x-full" : ""}`} style={{ left: `${pos(lo)}%` }}>I(0) {fmt(lo, 2)}</span>
+        <span className={`absolute pl-1 ${kind === "F" ? "" : "-translate-x-full"}`} style={{ left: `${pos(hi)}%` }}>I(1) {fmt(hi, 2)}</span>
       </div>
       <figcaption className="mt-1 text-sm text-paper-dim">
         Statistic <span className="num text-paper">{fmt(stat, 3)}</span>. The amber zone between the bounds is inconclusive; the green zone rejects
