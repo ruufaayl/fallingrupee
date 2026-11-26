@@ -13,6 +13,12 @@ const LINKS: Record<string, string> = {
   "Fuel & Transport Costs": "https://www.pbs.gov.pk/price-statistics/",
 };
 const CODE: Record<string, string> = { "Food Prices": "FOODCPI", "Dollar Rate": "EXR", "World Food Prices": "GFOOD", "Fuel & Transport Costs": "TRANSCPI" };
+const SERIES = [
+  { name: "Food Prices", source: "Pakistan Bureau of Statistics (PBS)", measure: "National food price index (2015-16 = 100)" },
+  { name: "Dollar Rate", source: "World Bank (Global Economic Monitor)", measure: "Rupees per US dollar, monthly average" },
+  { name: "World Food Prices", source: "Food and Agriculture Organization (FAO)", measure: "FAO Food Price Index (2014–16 = 100)" },
+  { name: "Fuel & Transport Costs", source: "Pakistan Bureau of Statistics (PBS)", measure: "Transport price index (2015-16 = 100)" },
+];
 
 export function S5Data() {
   const D = Object.fromEntries(descriptives.variables.map((v) => [v.variable, v]));
@@ -26,7 +32,7 @@ export function S5Data() {
       intro={
         <p>
           Monthly data from {simple.period}. Every series was downloaded from its official source and combined month by month into one sheet — no
-          missing values, nothing estimated or filled in.
+          missing values, nothing estimated or filled in. The regression uses the monthly % change of each series, which is also in the sheet.
         </p>
       }
     >
@@ -38,7 +44,7 @@ export function S5Data() {
         >
           <Download className="h-4 w-4" aria-hidden /> Download the combined dataset (Excel)
         </a>
-        <span className="font-mono text-[0.68rem] text-faint">Sheets: Combined Data · Sources · Model Variables · Summary Statistics</span>
+        <span className="font-mono text-[0.68rem] text-faint">Sheets: Combined Data · Regression Data · Sources · Summary Statistics</span>
       </div>
 
       <div className="mt-12">
@@ -56,7 +62,7 @@ export function S5Data() {
               </tr>
             </thead>
             <tbody>
-              {simple.variables.map((v) => {
+              {SERIES.map((v) => {
                 const d = D[CODE[v.name]];
                 const s = timeseries.series[CODE[v.name]] as number[];
                 return (

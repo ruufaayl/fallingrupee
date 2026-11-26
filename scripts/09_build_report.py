@@ -23,7 +23,6 @@ S = json.loads((ROOT / "data" / "research" / "simple.json").read_text())
 desc = {v["variable"]: v for v in json.loads((O / "descriptive_statistics.json").read_text())["variables"]}
 corr = json.loads((O / "correlations.json").read_text())
 ts = json.loads((O / "timeseries.json").read_text())["series"]
-A = S["asymmetry"]
 
 doc = Document()
 sec = doc.sections[0]
@@ -111,13 +110,12 @@ P(S["question"], bold=True)
 
 doc.add_heading("3. Variables", 1)
 table(["Role", "Variable", "Measured as", "Source"], [[v["role"], v["name"], v["measure"], v["source"]] for v in S["variables"]],
-      "Dependent and independent variables.")
+      "Dependent and independent variables (all monthly % changes; X's from the previous month).", size=9.5)
 
 doc.add_heading("4. The equation", 1)
-P(S["equation_general"], bold=True, size=13, center=True)
-P("Each β is an elasticity: the % change in food prices when that variable changes by 1% (all variables in natural logs). The model is "
-  "estimated as an ARDL (autoregressive distributed lag) model, which suits data that trend over time and lets effects build up over months; "
-  "the equation above is its long-run form.")
+P(S["equation_general"], bold=True, size=12, center=True)
+P("Estimated by ordinary least squares (OLS). Every variable is a monthly % change; the X variables are taken from the previous month because "
+  "prices take time to react. β₄ is the autoregressive term (last month's food inflation).")
 
 doc.add_heading("5. Hypotheses", 1)
 table(["#", "H₀ (null)", "H₁ (alternative)", "Test"], [[h["id"], h["h0"], h["h1"], h["test"]] for h in S["hypotheses"]], "Hypotheses.", size=9.5)
@@ -125,52 +123,55 @@ P("Decision rule: reject H₀ if the p-value is below 0.05 (5% significance leve
 
 doc.add_heading("6. Data", 1)
 rows = []
-for v, k in zip(S["variables"], ("FOODCPI", "EXR", "GFOOD", "TRANSCPI")):
-    rows.append([v["name"], v["source"], f"{ts[k][0]:.2f}", f"{ts[k][-1]:.2f}", f"+{desc[k]['total_change_pct']:.0f}%"])
-table(["Variable", "Source", "Jan 2015", "Dec 2025", "Change"], rows, "Data sources (monthly, Jan 2015 – Dec 2025, N = 132, no missing values).")
-P("All four series are combined month by month in the attached Excel file (sheets: Combined Data, Sources, Model Variables, Summary Statistics).")
-figure(FIG / "fig01_rebased_indices.png", "All four variables, January 2015 = 100.")
+for nm, k, src in (("Food Prices", "FOODCPI", "PBS"), ("Dollar Rate (PKR per USD)", "EXR", "World Bank GEM"), ("World Food Prices", "GFOOD", "FAO"),
+                   ("Fuel & Transport Costs", "TRANSCPI", "PBS")):
+    rows.append([nm, src, f"{ts[k][0]:.2f}", f"{ts[k][-1]:.2f}", f"+{desc[k]['total_change_pct']:.0f}%"])
+table(["Series", "Source", "Jan 2015", "Dec 2025", "Change"], rows, "Data sources (monthly, Jan 2015 – Dec 2025, N = 132, no missing values).")
+P("All series and the regression variables (monthly % changes) are in the attached Excel file (sheets: Combined Data, Regression Data, Sources, Summary Statistics).")
+figure(FIG / "fig01_rebased_indices.png", "All four series, January 2015 = 100.")
 
-doc.add_heading("7. Descriptive statistics and correlation", 1)
+doc.add_heading("7. Tests before the regression", 1)
 rows = [[nm, f"{desc[k]['mean']:.1f}", f"{desc[k]['median']:.1f}", f"{desc[k]['sd']:.1f}", f"{desc[k]['min']:.1f}", f"{desc[k]['max']:.1f}", f"{desc[k]['cagr_pct']:.1f}%"]
         for k, nm in (("FOODCPI", "Food Prices"), ("EXR", "Dollar Rate"), ("GFOOD", "World Food Prices"), ("TRANSCPI", "Fuel & Transport Costs"))]
 table(["Variable", "Mean", "Median", "Std. dev.", "Min", "Max", "Growth/yr"], rows, "Descriptive statistics.")
-figure(FIG / "slide_corr.png", "Correlation matrix (log levels).", width=10)
-P(f"Food prices and the dollar rate are almost perfectly correlated (r = {corr['levels_log']['matrix'][0][1]:.2f}). Because trending series always "
-  "look correlated, we test the relationship formally below.")
+figure(FIG / "slide_corr_changes.png", "Correlation matrix of the regression variables (monthly % changes).", width=11)
+table(["Variable", "ADF p (level)", "Level", "ADF p (% change)", "% change"],
+      [[u["name"], f"{u['level_p']:.3f}", u["level_result"], "< 0.001" if u["change_p"] < 0.001 else f"{u['change_p']:.3f}", u["change_result"]] for u in S["stationarity"]],
+      "Stationarity — ADF unit root test (H₀: non-stationary).")
+table(["Independent variable", "VIF", "Tolerance"], [[v["name"], f"{v['vif']:.2f}", f"{v['tolerance']:.3f}"] for v in S["vif"]],
+      "Multicollinearity — variance inflation factors (problem if VIF > 10).")
 
-doc.add_heading("8. Tests we ran", 1)
-table(["Test", "What it checks", "H₀", "Result", "Decision"],
-      [[t["name"], t["checks"], t["h0"] or "—", t["result"], t["decision"]] for t in S["tests"]], "Summary of all tests.", size=8.5)
-table(["Variable", "ADF p (level)", "ADF p (1st diff.)", "Order"],
-      [[u["name"], f"{u['level_p']:.3f}", "< 0.001" if u["diff_p"] < 0.001 else f"{u['diff_p']:.3f}", u["order"]] for u in S["unit_roots"]],
-      "ADF unit root test.")
-
-doc.add_heading("9. Results", 1)
-P("Estimated long-run equation:", bold=True)
-P(S["equation_estimated"], bold=True, size=12, center=True)
-table(["Variable", "Coefficient", "Std. error", "p-value", "Meaning"],
-      [[c["name"], f"{c['coef']:.2f}", f"{c['se']:.3f}", f"{c['p']:.3f}", c["plain"]] for c in S["coefficients"]], "Long-run coefficients.", size=9.5)
-figure(FIG / "slide_coefs.png", "Long-run effects with 95% ranges (filled = significant at 5%).", width=14)
+doc.add_heading("8. Regression results", 1)
+P(S["equation_estimated"], bold=True, size=11.5, center=True)
+F_ = S["fit"]
+table(["Variable", "Coefficient", "Std. error", "t", "p-value", "Significant"],
+      [["Constant", f"{S['constant']:.3f}", "", "", "", ""]] +
+      [[c["name"], f"{c['coef']:.3f}", f"{c['se']:.3f}", f"{c['t']:.2f}", f"{c['p']:.3f}", "Yes" if c["significant"] else "No"] for c in S["coefficients"]],
+      f"OLS regression, N = {S['n']}. R² = {F_['r2']:.3f}, adj. R² = {F_['adj_r2']:.3f}, F = {F_['F']:.2f} (p = {F_['F_p']:.4f}).", size=9.5)
+figure(FIG / "slide_coefs.png", "Coefficients with 95% ranges (filled = significant at 5%).", width=14)
 table(["#", "Result", "Decision"], [[h["id"], h["result"], h["decision"]] for h in S["hypotheses"]], "Hypothesis decisions.", size=9.5)
-doc.add_heading("Asymmetry: rupee falling vs rupee rising", 2)
-P(f"Using a nonlinear ARDL that splits the dollar rate into 'falling rupee' and 'rising rupee' parts: a 1% fall in the rupee raises food prices "
-  f"by about {A['falling']:.2f}% in the long run (p = {A['falling_p']:.3f}). In the month the rupee rises, food prices do not fall "
-  f"(+{A['impact_rising']:.2f}%). Wald test: short-run effects differ (p = {A['p_short']:.3f}); long-run difference not proven (p = {A['p_long']:.3f}).")
-figure(FIG / "fig04_dynamic_multipliers.png", "Food price response to a 1% fall (red) and a 1% rise (green) of the rupee.")
-figure(FIG / "fig05_stability_ardl.png", "CUSUM and CUSUM of squares — the model is stable.")
+
+doc.add_heading("9. Diagnostic tests", 1)
+table(["Test", "What it checks", "H₀", "Result", "Decision"],
+      [[t["name"], t["checks"], t["h0"] or "—", t["result"], t["decision"]] for t in S["tests"] if t["group"] == "Diagnostics"], "Diagnostic tests.", size=8.5)
+figure(FIG / "slide_fit.png", "Actual vs predicted monthly food inflation.")
+figure(FIG / "slide_asym.png", "Asymmetry: effect of a falling vs a rising rupee (95% ranges).", width=12)
 
 doc.add_heading("10. Conclusion", 1)
 for i, a in enumerate(S["answer"], 1):
     P(f"{i}. {a}")
-P("Policy: keep the rupee stable; support poor households directly instead of waiting for the rupee to recover; diversify food and input imports.")
-P("Limits: the model shows strong, tested links, not proof of cause and effect; PBS changed the CPI base year in 2019; few months of a "
-  "strong rupee make the 'recovery' effect uncertain.")
+P("Policy: keep the rupee stable; treat a falling rupee as an early warning of food inflation; support poor households directly.")
+P("Limits: the model shows a tested link with a time order, not proof of cause; it explains about 10% of monthly swings (weather, harvests "
+  "and policy also matter); the rupee rose in few months, so the 'recovery' effect is uncertain.")
 
 doc.add_heading("References", 1)
 for r in [
-    "Pesaran, M. H., Shin, Y., & Smith, R. J. (2001). Bounds testing approaches to the analysis of level relationships. Journal of Applied Econometrics, 16(3), 289–326.",
-    "Shin, Y., Yu, B., & Greenwood-Nimmo, M. (2014). Modelling asymmetric cointegration and dynamic multipliers in a nonlinear ARDL framework. In Festschrift in Honor of Peter Schmidt (pp. 281–314). Springer.",
+    "Durbin, J., & Watson, G. S. (1950). Testing for serial correlation in least squares regression: I. Biometrika, 37(3/4), 409–428.",
+    "Breusch, T. S. (1978). Testing for autocorrelation in dynamic linear models. Australian Economic Papers, 17(31), 334–355.",
+    "Breusch, T. S., & Pagan, A. R. (1979). A simple test for heteroscedasticity and random coefficient variation. Econometrica, 47(5), 1287–1294.",
+    "White, H. (1980). A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity. Econometrica, 48(4), 817–838.",
+    "Jarque, C. M., & Bera, A. K. (1980). Efficient tests for normality, homoscedasticity and serial independence of regression residuals. Economics Letters, 6(3), 255–259.",
+    "Ramsey, J. B. (1969). Tests for specification errors in classical linear least-squares regression analysis. Journal of the Royal Statistical Society B, 31(2), 350–371.",
     "Dickey, D. A., & Fuller, W. A. (1979). Distribution of the estimators for autoregressive time series with a unit root. Journal of the American Statistical Association, 74(366), 427–431.",
     "Pakistan Bureau of Statistics. Monthly Review on Price Indices. https://www.pbs.gov.pk/price-statistics/",
     "World Bank. Global Economic Monitor (DPANUSSPB). https://databank.worldbank.org/source/global-economic-monitor-(gem)",

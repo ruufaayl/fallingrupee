@@ -9,17 +9,18 @@ export function S4Model() {
       n={4}
       kicker="The Equation & Hypotheses"
       title={<>One equation answers the question.</>}
-      intro={<p>We put food prices on the left and the three possible causes on the right. The β (beta) numbers tell us how strongly each cause moves food prices.</p>}
+      intro={<p>Food inflation on the left; the possible causes on the right. The β (beta) numbers tell us how strongly each cause moves food inflation.</p>}
     >
       <Reveal>
         <div className="rounded-sm border border-line bg-graphite px-5 py-10 text-center sm:px-10">
           <p className="font-display text-3xl leading-snug text-paper sm:text-5xl">
-            <span className="text-s-food">Food Prices</span> = β₀ + β₁ <span className="text-s-exr">Dollar Rate</span> + β₂{" "}
-            <span className="text-s-world">World Food Prices</span> + β₃ <span className="text-s-energy">Fuel &amp; Transport Costs</span> + error
+            <span className="text-s-food">Food Inflation</span> = β₀ + β₁ <span className="text-s-exr">Rupee Depreciation</span> + β₂{" "}
+            <span className="text-s-world">World Food Inflation</span> + β₃ <span className="text-s-energy">Fuel &amp; Transport Inflation</span> + β₄{" "}
+            <span className="text-gold">Last Month&rsquo;s Food Inflation</span> + error
           </p>
           <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-paper-dim">
-            Each β is an elasticity: the % change in food prices when that variable rises by 1%. β₁ = 0.5 would mean “a 10% weaker rupee → about 5%
-            dearer food”.
+            Every variable is a monthly % change. Each β says how many percentage points food inflation moves when that variable moves by 1
+            point. β₁ = 0.5 would mean “a 1% weaker rupee → food prices 0.5% higher the next month”. This is a standard OLS regression.
           </p>
         </div>
       </Reveal>

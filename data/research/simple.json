@@ -1,291 +1,403 @@
 {
   "title": "The Price of a Falling Rupee",
-  "problem": "Between 2015 and 2025, food prices in Pakistan nearly tripled. Over the same period the rupee lost much of its value against the US dollar, while world food prices rose only a little. We want to know whether the weak rupee is the main reason food became so expensive.",
-  "question": "Do a weaker rupee, world food prices and fuel costs raise food prices in Pakistan — and do food prices fall back when the rupee gets stronger?",
+  "problem": "Between 2015 and 2025, food prices in Pakistan nearly tripled. Over the same period the rupee lost much of its value against the US dollar, while world food prices rose only a little. We want to know whether the weak rupee is driving food inflation.",
+  "question": "Does a weaker rupee, along with world food prices and fuel costs, raise food inflation in Pakistan — and does a stronger rupee bring it down?",
   "period": "January 2015 – December 2025",
   "n": 132,
   "variables": [
     {
       "role": "Dependent (Y)",
-      "name": "Food Prices",
+      "name": "Food Inflation",
       "symbol": "Y",
-      "measure": "Pakistan's national food price index (2015-16 = 100)",
+      "measure": "Monthly % change in Pakistan's national food price index",
       "source": "Pakistan Bureau of Statistics (PBS)",
-      "why": "What families pay for food — the thing we want to explain."
+      "why": "How fast food prices rise each month — what we want to explain."
     },
     {
       "role": "Independent (X₁)",
-      "name": "Dollar Rate",
+      "name": "Rupee Depreciation",
       "symbol": "X₁",
-      "measure": "Rupees needed to buy 1 US dollar (monthly average)",
+      "measure": "Monthly % change in rupees per US dollar (last month)",
       "source": "World Bank (Global Economic Monitor)",
-      "why": "A higher number = a weaker rupee, so imports cost more."
+      "why": "A positive number = the rupee got weaker, so imports cost more."
     },
     {
       "role": "Independent (X₂)",
-      "name": "World Food Prices",
+      "name": "World Food Inflation",
       "symbol": "X₂",
-      "measure": "FAO Food Price Index (2014–16 = 100)",
+      "measure": "Monthly % change in the FAO Food Price Index (last month)",
       "source": "Food and Agriculture Organization (FAO)",
-      "why": "Prices of wheat, oil, sugar, dairy and meat on world markets."
+      "why": "How fast world prices of wheat, oil, sugar, dairy and meat are rising."
     },
     {
       "role": "Independent (X₃)",
-      "name": "Fuel & Transport Costs",
+      "name": "Fuel & Transport Inflation",
       "symbol": "X₃",
-      "measure": "Transport price index, mostly petrol & diesel (2015-16 = 100)",
+      "measure": "Monthly % change in the transport price index (last month)",
       "source": "Pakistan Bureau of Statistics (PBS)",
       "why": "Fuel is needed to grow food and move it to the market."
+    },
+    {
+      "role": "Autoregressive (X₄)",
+      "name": "Last Month's Food Inflation",
+      "symbol": "X₄",
+      "measure": "Food inflation one month earlier",
+      "source": "Pakistan Bureau of Statistics (PBS)",
+      "why": "Price rises tend to continue — this captures that momentum."
     }
   ],
-  "equation_general": "Food Prices = β₀ + β₁ Dollar Rate + β₂ World Food Prices + β₃ Fuel & Transport Costs + error",
-  "equation_estimated": "Food Prices = -2.22 + 0.64 × Dollar Rate + 0.61 × World Food Prices + 0.21 × Fuel & Transport Costs",
-  "equation_note": "All variables are in logarithms, so each number is an elasticity: the % change in food prices for a 1% change in that variable. Estimated with an ARDL model (long-run form) on monthly data, 2015–2025.",
-  "constant": -2.22,
+  "equation_general": "Food Inflation = β₀ + β₁ Rupee Depreciation + β₂ World Food Inflation + β₃ Fuel & Transport Inflation + β₄ Last Month's Food Inflation + error",
+  "equation_estimated": "Food Inflation = 0.50 + 0.27 Rupee Depreciation + 0.12 World Food Inflation − 0.05 Fuel & Transport Inflation + 0.18 Last Month's Food Inflation",
+  "equation_note": "All variables are monthly % changes. The X variables are measured one month earlier, because prices take time to react. Estimated by ordinary least squares (OLS) on 132 months, January 2015 – December 2025.",
+  "constant": 0.501,
   "coefficients": [
     {
-      "code": "LEXR",
-      "name": "Dollar Rate",
+      "code": "RupeeDep_lag1",
+      "name": "Rupee Depreciation (last month)",
       "symbol": "β₁",
-      "coef": 0.64,
-      "se": 0.219,
-      "p": 0.004,
+      "coef": 0.266,
+      "se": 0.097,
+      "t": 2.75,
+      "p": 0.007,
       "ci": [
-        0.21,
-        1.07
+        0.075,
+        0.457
       ],
       "significant": true,
-      "plain": "A 10% rise in Dollar Rate → food prices about 6.3% higher in the long run."
+      "plain": "If the rupee falls 1% this month, food prices rise about 0.27% next month (a 10% fall → about 2.7%)."
     },
     {
-      "code": "LGFOOD",
-      "name": "World Food Prices",
+      "code": "WorldFoodInf_lag1",
+      "name": "World Food Inflation (last month)",
       "symbol": "β₂",
-      "coef": 0.61,
-      "se": 0.19,
-      "p": 0.002,
+      "coef": 0.124,
+      "se": 0.079,
+      "t": 1.56,
+      "p": 0.122,
       "ci": [
-        0.23,
-        0.98
-      ],
-      "significant": true,
-      "plain": "A 10% rise in World Food Prices → food prices about 5.9% higher in the long run."
-    },
-    {
-      "code": "LTRANSCPI",
-      "name": "Fuel & Transport Costs",
-      "symbol": "β₃",
-      "coef": 0.21,
-      "se": 0.223,
-      "p": 0.359,
-      "ci": [
-        -0.24,
-        0.65
+        -0.034,
+        0.281
       ],
       "significant": false,
-      "plain": "Its effect (0.21) is too uncertain to be distinguished from zero (p = 0.36)."
+      "plain": "Positive (0.12) but not significant (p = 0.12): month to month, world prices do not clearly pass into Pakistan's food prices."
+    },
+    {
+      "code": "FuelInf_lag1",
+      "name": "Fuel & Transport Inflation (last month)",
+      "symbol": "β₃",
+      "coef": -0.054,
+      "se": 0.068,
+      "t": -0.79,
+      "p": 0.428,
+      "ci": [
+        -0.188,
+        0.08
+      ],
+      "significant": false,
+      "plain": "Close to zero (-0.05) and not significant (p = 0.43): no clear month-to-month effect."
+    },
+    {
+      "code": "FoodInf_lag1",
+      "name": "Food Inflation (last month)",
+      "symbol": "β₄",
+      "coef": 0.183,
+      "se": 0.088,
+      "t": 2.08,
+      "p": 0.04,
+      "ci": [
+        0.009,
+        0.358
+      ],
+      "significant": true,
+      "plain": "Food inflation carries over: 18% of last month's rise repeats this month."
     }
   ],
   "hypotheses": [
     {
       "id": "H1",
-      "question": "Does a weaker rupee raise food prices?",
-      "h0": "The dollar rate has no effect on food prices (β₁ = 0).",
-      "h1": "A higher dollar rate raises food prices (β₁ ≠ 0).",
-      "test": "t-test on β₁ (long-run ARDL)",
-      "result": "β₁ = 0.64, p = 0.004",
+      "question": "Does a weaker rupee raise food inflation?",
+      "h0": "Rupee depreciation has no effect (β₁ = 0).",
+      "h1": "Rupee depreciation affects food inflation (β₁ ≠ 0).",
+      "test": "t-test on β₁",
+      "result": "β₁ = 0.266, t = 2.75, p = 0.007",
+      "p": 0.007,
       "reject": true,
-      "decision": "Reject H0"
+      "decision": "Reject H₀"
     },
     {
       "id": "H2",
-      "question": "Do world food prices raise Pakistan's food prices?",
-      "h0": "World food prices have no effect (β₂ = 0).",
-      "h1": "Higher world food prices raise food prices (β₂ ≠ 0).",
-      "test": "t-test on β₂ (long-run ARDL)",
-      "result": "β₂ = 0.61, p = 0.002",
-      "reject": true,
-      "decision": "Reject H0"
+      "question": "Does world food inflation raise Pakistan's food inflation?",
+      "h0": "World food inflation has no effect (β₂ = 0).",
+      "h1": "It has an effect (β₂ ≠ 0).",
+      "test": "t-test on β₂",
+      "result": "β₂ = 0.124, t = 1.56, p = 0.122",
+      "p": 0.122,
+      "reject": false,
+      "decision": "Fail to reject H₀"
     },
     {
       "id": "H3",
-      "question": "Do fuel & transport costs raise food prices?",
-      "h0": "Fuel & transport costs have no effect (β₃ = 0).",
-      "h1": "Higher fuel & transport costs raise food prices (β₃ ≠ 0).",
-      "test": "t-test on β₃ (long-run ARDL)",
-      "result": "β₃ = 0.21, p = 0.359",
+      "question": "Does fuel & transport inflation raise food inflation?",
+      "h0": "Fuel & transport inflation has no effect (β₃ = 0).",
+      "h1": "It has an effect (β₃ ≠ 0).",
+      "test": "t-test on β₃",
+      "result": "β₃ = -0.054, t = -0.79, p = 0.428",
+      "p": 0.428,
       "reject": false,
-      "decision": "Fail to reject H0"
+      "decision": "Fail to reject H₀"
     },
     {
       "id": "H4",
-      "question": "Do these variables move together in the long run?",
-      "h0": "There is no long-run relationship.",
-      "h1": "There is a long-run relationship.",
-      "test": "ARDL Bounds Test (F)",
-      "result": "F = 7.54 > critical value 4.35 (5%)",
+      "question": "Does food inflation carry over from last month? (autoregression)",
+      "h0": "Last month's food inflation has no effect (β₄ = 0).",
+      "h1": "Food inflation persists (β₄ ≠ 0).",
+      "test": "t-test on β₄",
+      "result": "β₄ = 0.183, t = 2.08, p = 0.040",
+      "p": 0.04,
       "reject": true,
-      "decision": "Reject H0"
+      "decision": "Reject H₀"
     },
     {
       "id": "H5",
-      "question": "Does a falling rupee and a rising rupee affect food prices equally?",
-      "h0": "The effect of a falling rupee equals the effect of a rising rupee (symmetry).",
-      "h1": "The effects are different (asymmetry).",
-      "test": "Wald test (NARDL)",
-      "result": "Short run: p = 0.023 → different. Long run: p = 0.495 → cannot say they differ.",
+      "question": "Do the variables together explain food inflation?",
+      "h0": "All slopes are zero (β₁ = β₂ = β₃ = β₄ = 0).",
+      "h1": "At least one slope is not zero.",
+      "test": "F-test (overall significance)",
+      "result": "F(4, 127) = 3.56, p = 0.009",
+      "p": 0.0087,
       "reject": true,
-      "partial": true,
-      "decision": "Reject H0 in the short run · Fail to reject H0 in the long run"
+      "decision": "Reject H₀"
+    },
+    {
+      "id": "H6",
+      "question": "Does a rising rupee affect food prices as much as a falling rupee?",
+      "h0": "Depreciation and appreciation have the same effect.",
+      "h1": "The effects are different.",
+      "test": "Wald F-test (equal coefficients)",
+      "result": "Falling rupee 0.33 (p = 0.004); rising rupee -0.00 (p = 0.988); F = 1.35, p = 0.247",
+      "p": 0.247,
+      "reject": false,
+      "decision": "Fail to reject H₀"
     }
   ],
-  "unit_roots": [
+  "stationarity": [
     {
       "name": "Food Prices",
-      "level_p": 0.979,
-      "diff_p": 0.0,
-      "order": "I(1)"
+      "level_stat": 0.73,
+      "level_p": 0.99,
+      "change_stat": -9.302,
+      "change_p": 0.0,
+      "crit5": -2.884,
+      "level_result": "Non-stationary",
+      "change_result": "Stationary"
     },
     {
       "name": "Dollar Rate",
-      "level_p": 0.777,
-      "diff_p": 0.0,
-      "order": "I(1)"
+      "level_stat": -0.335,
+      "level_p": 0.92,
+      "change_stat": -7.823,
+      "change_p": 0.0,
+      "crit5": -2.884,
+      "level_result": "Non-stationary",
+      "change_result": "Stationary"
     },
     {
       "name": "World Food Prices",
+      "level_stat": -1.158,
       "level_p": 0.691,
-      "diff_p": 0.0,
-      "order": "I(1)"
+      "change_stat": -7.782,
+      "change_p": 0.0,
+      "crit5": -2.884,
+      "level_result": "Non-stationary",
+      "change_result": "Stationary"
     },
     {
       "name": "Fuel & Transport Costs",
-      "level_p": 0.976,
-      "diff_p": 0.0,
-      "order": "I(1)"
+      "level_stat": 0.012,
+      "level_p": 0.96,
+      "change_stat": -8.41,
+      "change_p": 0.0,
+      "crit5": -2.884,
+      "level_result": "Non-stationary",
+      "change_result": "Stationary"
+    }
+  ],
+  "vif": [
+    {
+      "name": "Rupee Depreciation (last month)",
+      "vif": 1.42,
+      "tolerance": 0.705
+    },
+    {
+      "name": "World Food Inflation (last month)",
+      "vif": 1.06,
+      "tolerance": 0.945
+    },
+    {
+      "name": "Fuel & Transport Inflation (last month)",
+      "vif": 1.47,
+      "tolerance": 0.682
+    },
+    {
+      "name": "Food Inflation (last month)",
+      "vif": 1.1,
+      "tolerance": 0.907
     }
   ],
   "tests": [
     {
+      "group": "Data",
       "name": "Descriptive Statistics",
       "checks": "Average, spread, lowest and highest value of each variable.",
       "h0": null,
-      "result": "Food prices rose 194.0%, the dollar rate 178.0%, world food prices 23.0%.",
+      "result": "Food prices +194%, dollar rate +178%, world food +23% (2015→2025).",
       "decision": "—",
       "pass": null,
       "meaning": "Pakistan's food prices rose far more than world food prices."
     },
     {
-      "name": "Correlation Matrix",
-      "checks": "How strongly each pair of variables moves together (−1 to +1).",
+      "group": "Data",
+      "name": "Correlation",
+      "checks": "How strongly two variables move together (−1 to +1).",
       "h0": null,
-      "result": "Food Prices vs Dollar Rate: r = 0.98; vs World Food Prices: r = 0.79.",
+      "result": "Levels: food vs dollar r = 0.98. Monthly changes: food inflation vs last month's depreciation r = 0.23.",
       "decision": "—",
       "pass": null,
-      "meaning": "Food prices and the dollar rate move together very closely."
+      "meaning": "Levels move together almost perfectly; month-to-month links are weaker but positive."
     },
     {
-      "name": "ADF Unit Root Test",
-      "checks": "Whether each series has a stable average (stationary) or keeps trending.",
-      "h0": "The series has a unit root (not stationary).",
-      "result": "All four: not stationary in levels, stationary after first difference → I(1).",
-      "decision": "I(1) for all",
+      "group": "Data",
+      "name": "Stationarity (ADF Unit Root Test)",
+      "checks": "Whether a series has a stable average or keeps trending.",
+      "h0": "The series is non-stationary (has a unit root).",
+      "result": "Levels: all p > 0.05 (non-stationary). Monthly % changes: all p < 0.001 (stationary).",
+      "decision": "Use monthly % changes",
       "pass": true,
-      "meaning": "The data trend over time, so plain OLS could mislead — we use ARDL, which handles this."
+      "meaning": "Regressing trending levels can give fake results, so the model uses monthly % changes, which are stationary."
     },
     {
-      "name": "ARDL Bounds Test",
-      "checks": "Whether the variables share a long-run relationship.",
-      "h0": "No long-run relationship.",
-      "result": "F = 7.54 > 4.35 (5% upper bound)",
-      "decision": "Reject H0",
+      "group": "Regression",
+      "name": "Multicollinearity (VIF)",
+      "checks": "Whether the independent variables are too similar to each other.",
+      "h0": null,
+      "result": "All VIF ≤ 1.47 (rule: problem if VIF > 10).",
+      "decision": "No multicollinearity",
       "pass": true,
-      "meaning": "Food prices, the dollar rate and world food prices are tied together in the long run."
+      "meaning": "Each variable brings its own information, so the coefficients are reliable."
     },
     {
-      "name": "Error Correction (ECM)",
-      "checks": "How fast food prices return to the long-run path after a shock.",
-      "h0": "No adjustment (coefficient = 0).",
-      "result": "ECT = -0.12, p < 0.001",
-      "decision": "Reject H0",
+      "group": "Regression",
+      "name": "Regression (OLS, t-tests)",
+      "checks": "How much each variable moves food inflation, and whether the effect is significant.",
+      "h0": "Each coefficient = 0.",
+      "result": "Rupee depreciation p = 0.007; last month's food inflation p = 0.040; world food p = 0.122; fuel p = 0.428.",
+      "decision": "2 of 4 significant",
       "pass": true,
-      "meaning": "About 12% of any gap closes every month; half of it is gone in about 5.4 months."
+      "meaning": "A weaker rupee and last month's food inflation significantly raise food inflation."
     },
     {
-      "name": "Wald Test (Asymmetry)",
-      "checks": "Whether a falling and a rising rupee have the same effect.",
-      "h0": "Same effect (symmetry).",
-      "result": "Short run p = 0.023; long run p = 0.495",
-      "decision": "Short run: reject · Long run: fail to reject",
-      "pass": null,
-      "meaning": "When the rupee recovers, food prices do not come down in the same month."
+      "group": "Regression",
+      "name": "Overall Significance (F-test) & R²",
+      "checks": "Whether the model as a whole explains food inflation.",
+      "h0": "All slopes = 0.",
+      "result": "F = 3.56, p = 0.009; R² = 0.101, adjusted R² = 0.072",
+      "decision": "Reject H₀",
+      "pass": true,
+      "meaning": "The model is significant. It explains about 10% of monthly ups and downs — normal for monthly food prices, which also jump with weather and harvests."
     },
     {
-      "name": "Breusch-Godfrey (Serial Correlation)",
+      "group": "Diagnostics",
+      "name": "Autocorrelation (Durbin-Watson & Breusch-Godfrey)",
       "checks": "Whether errors from one month repeat in the next.",
-      "h0": "No serial correlation.",
-      "result": "p = 0.757",
-      "decision": "Fail to reject H0",
+      "h0": "No autocorrelation.",
+      "result": "DW = 2.04 (≈ 2 is ideal); BG(12 lags) p = 0.207",
+      "decision": "Fail to reject H₀",
       "pass": true,
-      "meaning": "No leftover pattern in the errors — good."
+      "meaning": "No autocorrelation — the errors are independent. (BG is the main test because the model has a lagged Y.)"
     },
     {
-      "name": "Breusch-Pagan-Godfrey (Heteroskedasticity)",
-      "checks": "Whether the size of errors changes with the variables.",
-      "h0": "Errors have constant variance.",
-      "result": "p = 0.16",
-      "decision": "Fail to reject H0",
+      "group": "Diagnostics",
+      "name": "Heteroskedasticity (Breusch-Pagan & White)",
+      "checks": "Whether the size of the errors changes with the variables.",
+      "h0": "Errors have constant variance (homoskedastic).",
+      "result": "Breusch-Pagan p = 0.830; White p = 0.555",
+      "decision": "Fail to reject H₀",
       "pass": true,
-      "meaning": "Error size is stable — good."
+      "meaning": "No heteroskedasticity — error size is stable, so the p-values can be trusted."
     },
     {
-      "name": "Jarque-Bera (Normality)",
+      "group": "Diagnostics",
+      "name": "Normality (Jarque-Bera)",
       "checks": "Whether the errors follow a normal (bell-shaped) distribution.",
       "h0": "Errors are normally distributed.",
-      "result": "p = 0.014",
-      "decision": "Reject H0",
-      "pass": false,
-      "meaning": "A few extreme months (e.g. May 2024) make errors non-normal. With 128 months this does not change the conclusions."
+      "result": "JB = 4.93, p = 0.085",
+      "decision": "Fail to reject H₀",
+      "pass": true,
+      "meaning": "The errors are normal enough — t- and F-tests are valid."
     },
     {
-      "name": "Ramsey RESET (Model Form)",
-      "checks": "Whether the equation's shape is correct.",
+      "group": "Diagnostics",
+      "name": "Specification (Ramsey RESET)",
+      "checks": "Whether the equation's form is correct (nothing important missing).",
       "h0": "The model is correctly specified.",
-      "result": "p = 0.245",
-      "decision": "Fail to reject H0",
+      "result": "F = 0.30, p = 0.587",
+      "decision": "Fail to reject H₀",
       "pass": true,
-      "meaning": "The equation's form is fine — good."
+      "meaning": "The linear form is fine."
     },
     {
-      "name": "CUSUM & CUSUM of Squares (Stability)",
-      "checks": "Whether the relationship stayed stable over 2015–2025.",
-      "h0": "The model is stable.",
-      "result": "CUSUM inside 5% bands; CUSUMSQ inside 5% bands",
-      "decision": "Fail to reject H0",
-      "pass": true,
-      "meaning": "The relationship held steady over the whole period — good."
+      "group": "Diagnostics",
+      "name": "Asymmetry (Wald F-test)",
+      "checks": "Whether a falling and a rising rupee have the same effect.",
+      "h0": "Same effect.",
+      "result": "Falling rupee 0.33 (p = 0.004); rising rupee -0.00 (p = 0.988); test p = 0.247",
+      "decision": "Fail to reject H₀",
+      "pass": null,
+      "meaning": "A falling rupee clearly raises food prices; a rising rupee shows no effect — but the difference is not statistically proven."
     }
   ],
   "asymmetry": {
-    "falling": 0.53,
-    "falling_p": 0.043,
-    "rising": 1.18,
-    "rising_p": 0.291,
-    "impact_falling": 0.052,
-    "impact_rising": 0.464,
-    "p_short": 0.023,
-    "p_long": 0.495
+    "dep_coef": 0.33,
+    "dep_p": 0.004,
+    "dep_ci": [
+      0.11,
+      0.551
+    ],
+    "app_ci": [
+      -0.501,
+      0.494
+    ],
+    "dep_months": 83,
+    "app_months": 49,
+    "app_coef": -0.004,
+    "app_p": 0.988,
+    "F": 1.352,
+    "p": 0.247,
+    "df": [
+      1,
+      126
+    ]
   },
   "fit": {
-    "r2": 0.9986,
-    "adj_r2": 0.9983,
-    "nobs": 128
+    "r2": 0.101,
+    "adj_r2": 0.072,
+    "F": 3.56,
+    "F_p": 0.0087,
+    "df": [
+      4,
+      127
+    ],
+    "se_regression": 2.069,
+    "aic": 571.5,
+    "sic": 585.91
   },
+  "total_effect_rupee": 0.326,
   "answer": [
-    "YES — a weaker rupee raises food prices. A 10% rise in the dollar rate goes with about 6.3% higher food prices in the long run.",
-    "YES — world food prices matter too: a 10% rise goes with about 5.9% higher food prices.",
-    "NOT CLEAR — fuel & transport costs: the effect is positive but not statistically significant.",
-    "When the rupee gets stronger, food prices do NOT fall in the same month. Over the long run we cannot prove the fall is smaller — there were too few months of a rising rupee to tell."
+    "YES — a weaker rupee raises food inflation. A 1% fall in the rupee adds about 0.27% to food prices the next month (about 0.33% in total once the carry-over is included). Significant at 1% (p = 0.007).",
+    "Food inflation has momentum: about 18% of last month's rise carries into this month (p = 0.040).",
+    "NO clear month-to-month effect of world food prices (p = 0.122) or fuel & transport costs (p = 0.428).",
+    "A rising rupee showed no effect on food prices (-0.00, p = 0.988), while a falling rupee did (0.33, p = 0.004) — but the difference is not statistically proven (p = 0.247).",
+    "The model passes all diagnostic tests: no multicollinearity, no autocorrelation, no heteroskedasticity, normal errors, correct form."
   ],
-  "one_line": "The rupee's fall is paid for at the market: when the rupee weakens, food gets dearer — and it does not get cheaper again quickly when the rupee recovers."
+  "one_line": "When the rupee falls, food prices follow a month later — and nothing in our data shows them coming back down when the rupee recovers."
 }

@@ -77,13 +77,13 @@ rows = [
     ("Period", "January 2015 – December 2025"),
     ("Frequency", "Monthly"),
     ("Observations", f"{len(s)} months per variable — no missing values"),
-    ("Dependent variable (Y)", "Food Prices — Pakistan's national food price index"),
-    ("Independent variables (X)", "Dollar Rate (PKR per USD) · World Food Prices (FAO index) · Fuel & Transport Costs (transport price index)"),
+    ("Dependent variable (Y)", "Food Inflation — monthly % change in Pakistan's national food price index"),
+    ("Independent variables (X)", "Rupee Depreciation (PKR per USD) · World Food Inflation (FAO index) · Fuel & Transport Inflation (transport index) · last month's Food Inflation — all monthly % changes, previous month"),
     ("", None),
     ("Sheets in this file", None),
     ("1. Combined Data", "All four variables side by side, one row per month, exactly as used in the study."),
     ("2. Sources", "Where each variable comes from: institution, series code, link, unit and notes."),
-    ("3. Model Variables", "The same data in natural logarithms (ln), plus the rupee split into 'falling' and 'rising' parts used in the asymmetry test."),
+    ("3. Regression Data", "The monthly % changes used in the regression (Y and X1–X4), one row per month — ready to re-run the regression."),
     ("4. Summary Statistics", "Mean, median, minimum, maximum, standard deviation and growth of each variable."),
     ("", None),
     ("How the data were combined", "Each series was downloaded from its official source, matched by calendar month, and placed in one table. "
@@ -143,28 +143,31 @@ for r, v in enumerate(VARS, 2):
     ws.row_dimensions[r].height = 95
 widths(ws, [22, 11, 20, 20, 32, 40, 38, 50])
 
-# ---------------------------------------------------------------------------------------------- 4. Model Variables
-ws = wb.create_sheet("Model Variables")
-cols = [("Month", None), ("ln Food Prices", "LFOODCPI"), ("ln Dollar Rate", "LEXR"), ("ln World Food Prices", "LGFOOD"),
-        ("ln Fuel & Transport Costs", "LTRANSCPI"), ("Rupee falling (cumulative)", "LEXR_POS"), ("Rupee rising (cumulative)", "LEXR_NEG")]
+# ---------------------------------------------------------------------------------------------- 4. Regression Data
+ws = wb.create_sheet("Regression Data")
+rd = pd.read_csv(ROOT / "data" / "processed" / "regression_data.csv")
+cols = [("Month", "Month"), ("Food Inflation (Y)", "FoodInf"), ("Rupee Depreciation, last month (X1)", "RupeeDep_lag1"),
+        ("World Food Inflation, last month (X2)", "WorldFoodInf_lag1"), ("Fuel & Transport Inflation, last month (X3)", "FuelInf_lag1"),
+        ("Food Inflation, last month (X4)", "FoodInf_lag1")]
 for c, (h, _) in enumerate(cols, 1):
     ws.cell(row=1, column=c, value=h)
 style_header(ws, 1, len(cols))
-note = ("ln = natural logarithm, so coefficients read as percentage effects. 'Rupee falling' adds up every monthly rise in ln(Dollar Rate); "
-        "'Rupee rising' adds up every monthly fall. Both start at 0 in Jan 2015.")
+ws.row_dimensions[1].height = 45
+note = ("Every value is a monthly % change: (this month − last month) ÷ last month × 100, from the Combined Data sheet. X1–X4 are taken from "
+        "the previous month. These are exactly the 132 rows used in the regression — it can be re-run with Excel (Data ▸ Data Analysis ▸ "
+        "Regression, Y = column B, X = columns C:F) or EViews.")
 ws.cell(row=2, column=1, value=note).alignment = WRAP
 ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=len(cols))
-ws.row_dimensions[2].height = 34
-for i, row in s.iterrows():
+ws.row_dimensions[2].height = 48
+for i, row in rd.iterrows():
     r = i + 3
-    y, m = row["date"].split("M")
-    ws.cell(row=r, column=1, value=f"{y}-{m}")
+    ws.cell(row=r, column=1, value=str(row["Month"]))
     for c, (_, k) in enumerate(cols[1:], 2):
-        ws.cell(row=r, column=c, value=round(float(row[k]), 5)).number_format = "0.00000"
+        ws.cell(row=r, column=c, value=round(float(row[k]), 4)).number_format = "0.0000"
     for c in range(1, len(cols) + 1):
         ws.cell(row=r, column=c).border = BOX
 ws.freeze_panes = "B3"
-widths(ws, [12, 16, 16, 20, 24, 24, 24])
+widths(ws, [12, 18, 22, 22, 24, 20])
 
 # ---------------------------------------------------------------------------------------------- 5. Summary Statistics
 ws = wb.create_sheet("Summary Statistics")

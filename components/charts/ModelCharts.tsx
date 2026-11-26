@@ -261,17 +261,17 @@ export function EcmDecay({ rho, label }: { rho: number; label: string }) {
 }
 
 /* ------------------------------------------------------------------------------------------------ */
-export function FitChart({ dates, actual, fitted }: { dates: string[]; actual: number[]; fitted: number[] }) {
+export function FitChart({ dates, actual, fitted, yName = "ln food CPI", fitName = "NARDL fitted" }: { dates: string[]; actual: number[]; fitted: number[]; yName?: string; fitName?: string }) {
   const option = useMemo<EChartsOption>(() => ({
     grid: { left: 52, right: 20, top: 64, bottom: 36 },
     legend: { top: 0, left: 0, textStyle: { ...baseText, color: C.dim }, itemWidth: 14, itemHeight: 2 },
     tooltip: { ...tooltipBase, trigger: "axis", valueFormatter: (v) => (typeof v === "number" ? v.toFixed(4) : "—") },
     xAxis: { type: "category", data: dates.map(monthLabel), boundaryGap: false, ...axisCommon({ splitLine: { show: false } }), axisLabel: { ...baseText, interval: 11, formatter: (v: string) => v.slice(-4) } },
-    yAxis: { type: "value", scale: true, name: "ln food CPI", ...axisCommon() },
+    yAxis: { type: "value", scale: true, name: yName, ...axisCommon() },
     series: [
       { name: "Actual", type: "line", data: actual, showSymbol: false, lineStyle: { color: C.paper, width: 2 }, itemStyle: { color: C.paper } },
-      { name: "NARDL fitted", type: "line", data: fitted, showSymbol: false, lineStyle: { color: C.gold, width: 1.5, type: "dashed" }, itemStyle: { color: C.gold } },
+      { name: fitName, type: "line", data: fitted, showSymbol: false, lineStyle: { color: C.gold, width: 1.5, type: "dashed" }, itemStyle: { color: C.gold } },
     ],
-  }), [dates, actual, fitted]);
-  return <EChart option={option} height={300} ariaLabel="Actual and fitted log food CPI from the NARDL model." />;
+  }), [dates, actual, fitted, yName, fitName]);
+  return <EChart option={option} height={300} ariaLabel={`Actual and fitted ${yName}.`} />;
 }
